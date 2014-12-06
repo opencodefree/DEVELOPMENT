@@ -13,6 +13,7 @@
 			<style isDefault="false" style="Row" backcolor="#E6DAC3"/>
 		</conditionalStyle>
 	</style>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString language="SQL">
 		<![CDATA[select cod_planta,idioma_region,nombre_nativo,nombre_cientifico,fecha_registro,fuente_de_datos from planta ORDER BY  1 ASC]]>
 	</queryString>
@@ -56,7 +57,7 @@
 			</staticText>
 			<image>
 				<reportElement x="21" y="19" width="734" height="112"/>
-				<imageExpression class="java.lang.String"><![CDATA["D:\\Mmaya2\\src\\images\\encabezado.png"]]></imageExpression>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>

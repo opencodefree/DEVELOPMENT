@@ -8,9 +8,7 @@ import javax.swing.JOptionPane;
  
 public class connPos
 {
-   // public Connection cn;
-    
-    
+   
     static String host_Server="localhost";
     static String user_Server="postgres";
     String pass_Server="postgres";
@@ -120,13 +118,13 @@ public class connPos
        return rs;
    }
    
-    public ResultSet seleccionarTodoRegion(){
+    public ResultSet seleccionarTodoRegistrante(){
        Connection cn = getConexion();
        Statement st;
        ResultSet rs=null;
        try{
            st=cn.createStatement();
-           rs=st.executeQuery("SELECT * FROM REGION");
+           rs=st.executeQuery("SELECT * FROM REGISTRANTE");
            
        }
        catch (SQLException ex) {
@@ -242,13 +240,14 @@ public class connPos
         }
    } 
  
- public void insertarDatosRegion(String tipo_region,String ecoregion,String dpto){
+ public void insertarDatosRegistrante(String codigo,String paterno,String materno,String nombre){
      Connection cn=getConexion();
         try {
-            PreparedStatement pst=cn.prepareStatement("INSERT INTO REGION (tipo_region,ecoregion,dpto) VALUES(?,?,?)");
-            pst.setString(1, tipo_region);
-            pst.setString(2, ecoregion);
-            pst.setString(3, dpto);
+            PreparedStatement pst=cn.prepareStatement("INSERT INTO REGISTRANTE (cod_registrante,ap_registrante,am_registrante,nom_registrante) VALUES(?,?,?,?)");
+            pst.setString(1, codigo);
+            pst.setString(2, paterno);
+            pst.setString(3, materno);
+            pst.setString(4, nombre);
             pst.execute();
         } catch (SQLException ex) {
             Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
@@ -269,12 +268,12 @@ public class connPos
         }
    }
   
-   public void borrarRegion(int codigo){
+   public void borrarRegistrante(String codReg){
        Connection cn=getConexion();
        PreparedStatement pst;
        try{
-          pst=cn.prepareStatement("DELETE FROM REGION WHERE cod_region=?");
-          pst.setInt(1, codigo);
+          pst=cn.prepareStatement("DELETE FROM REGISTRANTE WHERE cod_registrante=?");
+          pst.setString(1,codReg);
           pst.executeQuery();    
         } catch (SQLException ex) {
             Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);

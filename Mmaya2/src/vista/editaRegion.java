@@ -6,7 +6,7 @@ package vista;
 
 import conexion.connPos;
 import javax.swing.JOptionPane;
-import vista.Region;
+import vista.Registrante;
 
 /**
  *
