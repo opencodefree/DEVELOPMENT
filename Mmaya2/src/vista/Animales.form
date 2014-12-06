@@ -522,6 +522,11 @@
                                   <Component id="lblcontarParteUso2" min="-2" pref="17" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+<<<<<<< HEAD
+=======
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="74" max="-2" attributes="0"/>
+>>>>>>> origin/master
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane1" pref="58" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -983,7 +988,11 @@
                               <Component id="lblFotoAnimal" min="-2" pref="106" max="-2" attributes="0"/>
                               <Component id="lblDibAnimal" min="-2" pref="95" max="-2" attributes="0"/>
                           </Group>
+<<<<<<< HEAD
                           <EmptySpace pref="192" max="32767" attributes="0"/>
+=======
+                          <EmptySpace pref="180" max="32767" attributes="0"/>
+>>>>>>> origin/master
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1159,7 +1168,11 @@
                               </Group>
                               <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                           </Group>
+<<<<<<< HEAD
                           <EmptySpace pref="382" max="32767" attributes="0"/>
+=======
+                          <EmptySpace pref="430" max="32767" attributes="0"/>
+>>>>>>> origin/master
                       </Group>
                   </Group>
                 </DimensionLayout>
