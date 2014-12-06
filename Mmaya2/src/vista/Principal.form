@@ -126,7 +126,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/images/mapa_ico.gif"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Registrar Region"/>
+                <Property name="text" type="java.lang.String" value="Registrar Personas Registradoras"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegRegionActionPerformed"/>

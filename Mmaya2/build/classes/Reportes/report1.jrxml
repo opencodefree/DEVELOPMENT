@@ -4,8 +4,9 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="198"/>
 	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[select a.cod_animal,a.nombre_nativo,a.nombre_cientifico,a.especie,a.color,a.foto_animal,a.dibujo,a.desplazamiento,a.descripcion_animal,a.nro_de_registro_animal,a.fecha_registro,a.fuente_de_datos,a.idioma_region,r.tipo_region,r.ecoregion,r.dpto,a.tipo_uso,a.parte_uso,a.manera_uso,f.foto, d.foto as dibujoanimal
+		<![CDATA[select a.cod_animal,a.nombre_nativo,a.nombre_cientifico,a.especie,a.color,a.desplazamiento,a.descripcion_animal,a.nro_de_registro_animal,a.fecha_registro,a.fuente_de_datos,a.idioma_region,r.tipo_region,r.ecoregion,r.dpto,a.tipo_uso,a.parte_uso,a.manera_uso,f.foto, d.foto as dibujoanimal
 from animal a ,region r,fotoanimal f, fotoanimaldibujo d
 where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal=f.cod_animal and a.cod_animal=d.cod_animal;]]>
 	</queryString>
@@ -14,8 +15,6 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 	<field name="nombre_cientifico" class="java.lang.String"/>
 	<field name="especie" class="java.lang.String"/>
 	<field name="color" class="java.lang.String"/>
-	<field name="foto_animal" class="java.lang.Object"/>
-	<field name="dibujo" class="java.lang.Object"/>
 	<field name="desplazamiento" class="java.lang.String"/>
 	<field name="descripcion_animal" class="java.lang.String"/>
 	<field name="nro_de_registro_animal" class="java.lang.String"/>
@@ -33,58 +32,142 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 	<group name="nro_de_registro_animal">
 		<groupExpression><![CDATA[$F{nro_de_registro_animal}]]></groupExpression>
 		<groupHeader>
-			<band height="79">
+			<band height="201">
+				<staticText>
+					<reportElement x="2" y="6" width="136" height="20" forecolor="#000000"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[DATOS DE  LA REGION:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="27" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Departamento:]]></text>
+				</staticText>
 				<line>
-					<reportElement x="-20" y="0" width="595" height="1" forecolor="#666666"/>
+					<reportElement x="-20" y="3" width="595" height="1" forecolor="#666666"/>
 				</line>
 				<staticText>
-					<reportElement mode="Opaque" x="3" y="29" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<reportElement mode="Opaque" x="3" y="153" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre Nativo:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement x="107" y="28" width="135" height="20"/>
+					<reportElement x="107" y="152" width="135" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre_nativo}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement mode="Opaque" x="3" y="51" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<reportElement mode="Opaque" x="3" y="175" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Nombre Cientifico:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement x="108" y="51" width="135" height="20"/>
+					<reportElement x="108" y="175" width="135" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombre_cientifico}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement mode="Opaque" x="261" y="28" width="86" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<reportElement mode="Opaque" x="261" y="152" width="86" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[Idioma Region:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement x="346" y="28" width="132" height="20"/>
+					<reportElement x="346" y="152" width="132" height="20"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{idioma_region}]]></textFieldExpression>
 				</textField>
 				<staticText>
-					<reportElement x="3" y="2" width="136" height="20" forecolor="#000000"/>
+					<reportElement x="3" y="126" width="136" height="20" forecolor="#000000"/>
 					<textElement verticalAlignment="Middle">
 						<font fontName="Arial" size="11" isBold="true"/>
 					</textElement>
 					<text><![CDATA[DATOS DEL ANIMAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="224" y="69" width="115" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Organización Fuente:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="224" y="92" width="98" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo de region:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Opaque" x="4" y="91" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[EcoRegion:]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="84" y="92" width="135" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{ecoregion}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="351" y="92" width="132" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo_region}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="85" y="27" width="135" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{dpto}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="352" y="69" width="132" height="20"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="11"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{fuente_de_datos}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="3" y="69" width="131" height="20"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[TCO/Area Protegida:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="4" y="49" width="100" height="20"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Municipio:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="224" y="47" width="131" height="20"/>
+					<textElement>
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Comunidad:]]></text>
 				</staticText>
 			</band>
 		</groupHeader>
@@ -93,7 +176,6 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 		</groupFooter>
 	</group>
 	<group name="body">
-		<groupExpression><![CDATA[$F{foto_animal}]]></groupExpression>
 		<groupHeader>
 			<band height="130">
 				<staticText>
@@ -106,12 +188,12 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 				<textField isStretchWithOverflow="true">
 					<reportElement x="0" y="23" width="407" height="96"/>
 					<textElement textAlignment="Justified">
-						<font fontName="Arial" size="11"/>
+						<font fontName="Arial" size="10"/>
 					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_animal}]]></textFieldExpression>
 				</textField>
 				<line>
-					<reportElement positionType="FixRelativeToBottom" x="0" y="129" width="555" height="1"/>
+					<reportElement positionType="FixRelativeToBottom" x="2" y="3" width="553" height="1"/>
 				</line>
 				<image>
 					<reportElement x="423" y="3" width="116" height="116"/>
@@ -182,120 +264,54 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 		<band/>
 	</background>
 	<title>
-		<band height="92">
+		<band height="89">
 			<image>
-				<reportElement x="5" y="0" width="550" height="92"/>
-				<imageExpression class="java.lang.String"><![CDATA["D:\\Mmaya2\\src\\images\\encabezado.png"]]></imageExpression>
+				<reportElement x="50" y="3" width="464" height="82"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="67">
+		<band height="40">
 			<staticText>
-				<reportElement x="0" y="0" width="555" height="20" forecolor="#000000"/>
+				<reportElement x="23" y="10" width="525" height="20" forecolor="#000000"/>
 				<textElement textAlignment="Right">
 					<font size="14" isBold="false"/>
 				</textElement>
 				<text><![CDATA[FICHA DE REGISTRO PUBLICO DE CONOCIMIENTOS Y SABERES ANCESTRALES]]></text>
 			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="29">
 			<staticText>
-				<reportElement mode="Opaque" x="315" y="40" width="108" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement mode="Opaque" x="315" y="9" width="108" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement>
 					<font fontName="Arial" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Fecha de registro:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="2" y="36" width="92" height="20" forecolor="#666666" backcolor="#FFFFFF"/>
+				<reportElement mode="Opaque" x="2" y="5" width="92" height="20" forecolor="#666666" backcolor="#FFFFFF"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<text><![CDATA[N° de Registro:]]></text>
 			</staticText>
 			<textField>
-				<reportElement mode="Opaque" x="82" y="35" width="177" height="21" forecolor="#000000" backcolor="#E6E6E6"/>
+				<reportElement mode="Opaque" x="82" y="4" width="177" height="21" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial" size="11" isBold="true" isUnderline="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{nro_de_registro_animal}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="420" y="39" width="108" height="20"/>
+				<reportElement x="420" y="8" width="108" height="20"/>
 				<textElement>
 					<font fontName="Arial" size="11"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecha_registro}]]></textFieldExpression>
 			</textField>
-		</band>
-	</pageHeader>
-	<columnHeader>
-		<band height="72">
-			<line>
-				<reportElement x="-12" y="0" width="595" height="1" forecolor="#666666"/>
-			</line>
-			<staticText>
-				<reportElement mode="Opaque" x="217" y="43" width="130" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Organización Fuente:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="217" y="23" width="130" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Tipo de region:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="3" y="21" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[EcoRegion:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Opaque" x="3" y="41" width="111" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Depto:]]></text>
-			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="72" y="23" width="135" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{ecoregion}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="329" y="23" width="132" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{tipo_region}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="74" y="42" width="135" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{dpto}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="332" y="43" width="132" height="20"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{fuente_de_datos}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement x="0" y="1" width="136" height="20" forecolor="#000000"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DATOS DE  LA REGION:]]></text>
-			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
@@ -331,7 +347,7 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 			<textField>
 				<reportElement x="100" y="42" width="448" height="48"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top">
-					<font fontName="Arial" size="11"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{parte_uso}]]></textFieldExpression>
 			</textField>
@@ -345,7 +361,7 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 			<textField>
 				<reportElement x="136" y="94" width="402" height="54"/>
 				<textElement textAlignment="Justified" verticalAlignment="Top">
-					<font fontName="Arial" size="11"/>
+					<font fontName="Arial" size="10"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{manera_uso}]]></textFieldExpression>
 			</textField>
@@ -367,13 +383,13 @@ where a.cod_region=r.cod_region and a.cod_animal=$P{parameter1} and a.cod_animal
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="8" y="37" width="100" height="13"/>
+				<reportElement x="8" y="37" width="193" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="11" y="5" width="534" height="32"/>
-				<textElement textAlignment="Center">
+				<textElement>
 					<font size="8"/>
 				</textElement>
 				<text><![CDATA[VICEMINISTERIO DE MEDIO AMBIENTE, BIODIVERSIDAD, CAMBIOS CLIMÁTICOS Y DE GESTIÓN Y DESARROLLO FORESTAL

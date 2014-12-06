@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import conexion.connPos;
@@ -27,7 +24,8 @@ public class fotoAnimals extends javax.swing.JInternalFrame {
 FileInputStream fis;
     //FileInputStream fisI;
     int lndBytes;
-    
+    Animales ani=new Animales();
+        
     public fotoAnimals() {
         initComponents();
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
@@ -36,8 +34,7 @@ FileInputStream fis;
         int vertical=(pantalla.height-ventana.height)/2;
         this.setLocation(horizontal,vertical);
         
-    
-        //DESHABILITANDO MOVER LA VENTANA
+           //DESHABILITANDO MOVER LA VENTANA
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         // MOSTRANDO DATOS EN EL COMBOBOX DESDE LA BD
          this.cmbfotoAni.removeAllItems();
@@ -191,6 +188,7 @@ FileInputStream fis;
 
     private void cmbfotoAniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbfotoAniActionPerformed
 
+        
         try{
             Connection cn=getConexion();
             Statement sent1=cn.createStatement();
@@ -243,6 +241,7 @@ FileInputStream fis;
     private void btnFotoGuardaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFotoGuardaActionPerformed
 
         try{
+            
             connPos cn=new connPos();
             String sql="INSERT INTO \"fotoanimal\"(cod_animal,foto) VALUES (?,?)";
 

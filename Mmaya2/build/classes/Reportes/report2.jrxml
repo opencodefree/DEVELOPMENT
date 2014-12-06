@@ -4,8 +4,9 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="148"/>
 	<parameter name="CodPlanta" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
 	<queryString>
-		<![CDATA[select p.cod_planta,p.nombre_nativo,p.nombre_cientifico,p.tipo_planta,color_planta,p.foto_semilla,p.foto_planta,p.dibujo,p.mes_semilla,p.nro_de_registro_planta,p.fecha_registro,p.fuente_de_datos,p.idioma_region,p.tipo_uso,p.parte_uso,p.manera_uso,p.descripcion_pla,r.tipo_region,r.ecoregion,r.dpto,f.foto,s.foto as fotosemilla,d.foto as dibplanta
+		<![CDATA[select p.cod_planta,p.nombre_nativo,p.nombre_cientifico,p.tipo_planta,color_planta,p.mes_semilla,p.nro_de_registro_planta,p.fecha_registro,p.fuente_de_datos,p.idioma_region,p.tipo_uso,p.parte_uso,p.manera_uso,p.descripcion_pla,r.tipo_region,r.ecoregion,r.dpto,f.foto,s.foto as fotosemilla,d.foto as dibplanta
 from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.cod_region=r.cod_region and p.cod_planta=$P{CodPlanta} and p.cod_planta=f.cod_planta and s.cod_planta=p.cod_planta and d.cod_planta=p.cod_planta;]]>
 	</queryString>
 	<field name="cod_planta" class="java.lang.String"/>
@@ -13,9 +14,6 @@ from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.c
 	<field name="nombre_cientifico" class="java.lang.String"/>
 	<field name="tipo_planta" class="java.lang.String"/>
 	<field name="color_planta" class="java.lang.String"/>
-	<field name="foto_semilla" class="java.lang.Object"/>
-	<field name="foto_planta" class="java.lang.Object"/>
-	<field name="dibujo" class="java.lang.Object"/>
 	<field name="mes_semilla" class="java.lang.String"/>
 	<field name="nro_de_registro_planta" class="java.lang.String"/>
 	<field name="fecha_registro" class="java.lang.String"/>
@@ -110,16 +108,15 @@ from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.c
 					</textElement>
 					<text><![CDATA[DESCRIPCION DEL PLANTA]]></text>
 				</staticText>
-				<line>
-					<reportElement positionType="FixRelativeToBottom" x="0" y="129" width="555" height="1"/>
-				</line>
 				<textField>
-					<reportElement x="8" y="23" width="399" height="106"/>
-					<textElement textAlignment="Justified"/>
+					<reportElement x="8" y="20" width="399" height="108"/>
+					<textElement>
+						<font size="8"/>
+					</textElement>
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{descripcion_pla}]]></textFieldExpression>
 				</textField>
 				<image>
-					<reportElement x="420" y="0" width="131" height="126"/>
+					<reportElement x="420" y="12" width="121" height="86"/>
 					<imageExpression class="java.io.InputStream"><![CDATA[$F{foto}]]></imageExpression>
 				</image>
 			</band>
@@ -158,11 +155,11 @@ from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.c
 					<textFieldExpression class="java.lang.String"><![CDATA[$F{mes_semilla}]]></textFieldExpression>
 				</textField>
 				<image>
-					<reportElement x="230" y="1" width="139" height="139"/>
+					<reportElement x="252" y="6" width="133" height="131"/>
 					<imageExpression class="java.io.InputStream"><![CDATA[$F{fotosemilla}]]></imageExpression>
 				</image>
 				<image>
-					<reportElement x="407" y="1" width="137" height="139"/>
+					<reportElement x="408" y="4" width="137" height="134"/>
 					<imageExpression class="java.io.InputStream"><![CDATA[$F{dibplanta}]]></imageExpression>
 				</image>
 			</band>
@@ -175,8 +172,8 @@ from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.c
 	<title>
 		<band height="92">
 			<image>
-				<reportElement x="0" y="0" width="528" height="92"/>
-				<imageExpression class="java.lang.String"><![CDATA["D:\\Mmaya2\\src\\images\\encabezado.png"]]></imageExpression>
+				<reportElement x="6" y="5" width="547" height="79"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -324,28 +321,40 @@ from planta p ,region r,fotoplanta f,fotosemilla s, fotoplantadibujo d where p.c
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{manera_uso}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="-2" width="555" height="1"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
 		<band/>
 	</columnFooter>
 	<pageFooter>
-		<band height="28">
+		<band height="55">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<reportElement mode="Opaque" x="0" y="40" width="515" height="13" backcolor="#E6E6E6"/>
 				<textElement textAlignment="Right"/>
 				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>
 			<textField evaluationTime="Report">
-				<reportElement mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<reportElement mode="Opaque" x="515" y="40" width="40" height="13" backcolor="#E6E6E6"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="4" width="100" height="13"/>
+				<reportElement x="0" y="40" width="100" height="13"/>
 				<textElement/>
 				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="14" y="4" width="534" height="32"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[VICEMINISTERIO DE MEDIO AMBIENTE, BIODIVERSIDAD, CAMBIOS CLIMÁTICOS Y DE GESTIÓN Y DESARROLLO FORESTAL
+Av. Camacho No. 1471 – Telf.: 2146382 – 2146383- 2146385-2146374
+]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>

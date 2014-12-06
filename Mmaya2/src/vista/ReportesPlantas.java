@@ -7,6 +7,7 @@ package vista;
 import conexion.connPos;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +19,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import static vista.ReportesAnimales.res;
 
@@ -26,10 +28,8 @@ import static vista.ReportesAnimales.res;
  * @author gfrm
  */
 public class ReportesPlantas extends javax.swing.JInternalFrame {
+private final String logotipo="/Reportes/encabezado.png";
 
-    /**
-     * Creates new form ReportesPlantas
-     */
     public ReportesPlantas() {
         initComponents();
         cargaParaReportes();
@@ -174,14 +174,13 @@ public class ReportesPlantas extends javax.swing.JInternalFrame {
         int fila=tablaPlantaRep.getSelectedRow();
         String cod_planta=this.tablaPlantaRep.getValueAt(fila, 0).toString();
         //VALIDAR LA SELECCION DE UN DATO
-        if(" ".equals(cod_planta))
-        JOptionPane.showMessageDialog(null, "Debe seleccionar un dato de la tabla para generar el reporte");
-
         JOptionPane.showMessageDialog(null, "Generando el Reporte espere un momento por favor!!!!");
         try{
+           URL  in=this.getClass().getResource("/Reportes/report2.jasper");
+            JasperReport reporteA=(JasperReport)JRLoader.loadObject(in);
             Map parametro=new HashMap();
             parametro.put("CodPlanta", cod_planta);
-            JasperReport reporteA= JasperCompileManager.compileReport("src/Reportes/report2.jrxml");
+            parametro.put("logo",this.getClass().getResourceAsStream(logotipo));
             JasperPrint printA = JasperFillManager.fillReport(reporteA, parametro, connPos.getConexion());
             JasperViewer.viewReport(printA,false);
         }catch(Exception e){
@@ -192,8 +191,12 @@ public class ReportesPlantas extends javax.swing.JInternalFrame {
     private void btnRepGeneralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRepGeneralActionPerformed
         JOptionPane.showMessageDialog(null, "Generando el Reporte espere un momento por favor!!!!");
         try{
-            JasperReport reporte= JasperCompileManager.compileReport("src/Reportes/Plantas.jrxml");
-            JasperPrint print = JasperFillManager.fillReport(reporte, null, connPos.getConexion());
+            URL  in=this.getClass().getResource("/Reportes/Plantas.jasper");
+            JasperReport reporte=(JasperReport)JRLoader.loadObject(in);
+            Map parametros = new HashMap();
+            parametros.clear();
+            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+            JasperPrint print = JasperFillManager.fillReport(reporte, parametros, connPos.getConexion());
             JasperViewer.viewReport(print,false);
         }catch(Exception e){
             //JOptionPane.showMessageDialog(null,e.getMessage());

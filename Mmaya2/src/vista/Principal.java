@@ -96,7 +96,6 @@ public class Principal extends javax.swing.JFrame {
                 formWindowOpened(evt);
             }
         });
-        getContentPane().setLayout(new java.awt.BorderLayout());
         getContentPane().add(escritorio, java.awt.BorderLayout.CENTER);
 
         mnuForms.setText("Formularios");
@@ -120,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
         mnuForms.add(mnuRegAnimales);
 
         mnuRegRegion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/mapa_ico.gif"))); // NOI18N
-        mnuRegRegion.setText("Registrar Region");
+        mnuRegRegion.setText("Registrar Personas Registradoras");
         mnuRegRegion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuRegRegionActionPerformed(evt);
@@ -259,7 +258,7 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
        escritorio.removeAll();
         escritorio.repaint();
-        Region region=new Region();
+        Registrante region=new Registrante();
         escritorio.add(region);
         region.setVisible(true);
     }//GEN-LAST:event_mnuRegRegionActionPerformed
