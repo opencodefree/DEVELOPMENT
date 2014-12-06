@@ -1,4 +1,4 @@
-
+///////////////// comentario  //////
 package vista;
 
 import static conexion.connPos.getConexion;
