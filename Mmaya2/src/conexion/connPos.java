@@ -13,7 +13,7 @@ public class connPos
     static String user_Server="postgres";
     String pass_Server="postgres";
       
-    static String db_Server="bdsa";
+    static String db_Server="bdsa4";
  
     Statement  st=null;
     Connection con=null;

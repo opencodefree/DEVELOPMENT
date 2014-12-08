@@ -15,26 +15,24 @@ create table animal(
   nombre_cientifico varchar(50),
   nombre_tco varchar(50),   
   nombre_comunidad varchar(100),  
-  nom_repnat varchar(100), 
-  ap_repnat varchar(100),
-  am_repnat varchar(100), 
+  nom_repnat varchar(100),  
   cargo_repnat varchar(50),   
   especie varchar(30),
   color varchar(50),
-  coorx varchar(200),
-  coory varchar(200),
+  coorx double,
+  coory double,
   foto_animal bytea,
   dibujo bytea,
   acta_ani bytea,
   tipo_uso varchar(200),
   parte_uso varchar(1000),
   manera_uso varchar(1000),
+  desplazamiento varchar(30),
   descripcion_animal varchar(2000), 
   fecha_registro varchar(10),
   fuente_de_datos varchar(25),
   idioma_region varchar(30),
   uso_combinado varchar(10),
-  observaciones varchar(200),
   primary key(cod_animal)
  );
 
@@ -49,14 +47,12 @@ create table animal(
   nombre_cientifico varchar(50),
   nombre_tco varchar(50),   
   nombre_comunidad varchar(100),  
-  nom_repnat varchar(100),
-  ap_repnat varchar(100),
-  am_repnat varchar(100),  
+  nom_repnat varchar(100),  
   cargo_repnat varchar(50),   
   tipo_planta varchar(25),
   color_planta varchar(25),
-  coorx varchar(200),
-  coory varchar(200),
+  coorx double,
+  coory double,
   foto_semilla bytea,
   foto_planta bytea,
   dibujo bytea,
@@ -70,37 +66,12 @@ create table animal(
   manera_uso varchar(1000),
   descripcion_pla varchar(2000),
   uso_combinado varchar(10),
-  observaciones varchar(200),
   primary key(cod_planta)
  );
 
-CREATE TABLE DEPARTAMENTO (
-  cod_dpto integer not null,
-  nom_dpto varchar(20)not null,
-  primary key(cod_dpto)
-);
 
 
-CREATE TABLE MUNICIPIOS (
-  cod_mncp varchar(8) not null,
-  cod_dpto integer,   
-  nom_mncp varchar(20),
-  primary key(cod_mncp)
-);
 
-alter table MUNICIPIOS
-  add constraint depmun
-  foreign key (cod_dpto)
-  references DEPARTAMENTO (cod_dpto); 
-
-
-CREATE TABLE REGISTRANTE(
- cod_registrante varchar(8) not null,
- nom_registrante varchar(40),
- am_registrante varchar(40),
- ap_registrante varchar(40),
- primary key(cod_registrante)
-); 
 
 alter table animal
   add constraint regani
@@ -110,18 +81,18 @@ alter table animal
 alter table animal
   add constraint aniregis
   foreign key (cod_registrante)
-  references registrante (cod_registrante); 
+  references usuario (cod_registrante); 
 
 alter table animal
   add constraint anidpto
   foreign key (cod_dpto)
-  references departamento (cod_dpto);            
+  references usuario (cod_dpto);            
     
 
 alter table animal
   add constraint animncp
   foreign key (cod_mncp)
-  references municipios (cod_mncp);     
+  references usuario (cod_mncp);     
 
 
 alter table planta
@@ -133,24 +104,32 @@ alter table planta
 alter table planta
   add constraint plaregis
   foreign key (cod_registrante)
-  references registrante(cod_registrante); 
+  references usuario (cod_registrante); 
 
 
 alter table planta
   add constraint plandpto
   foreign key (cod_dpto)
-  references departamento (cod_dpto); 
+  references usuario (cod_dpto); 
 
 
 alter table planta
   add constraint plamncp
   foreign key (cod_mncp)
-  references municipios (cod_mncp);     
+  references usuario (cod_mncp);    
 
 
 
 
- 
+ ///////TABLA UTIL //////
+
+CREATE TABLE REGISTRANTE(
+ cod_registrante varchar(8) not null,
+ nom_registrante varchar(40),
+ am_registrante varchar(40),
+ ap_registrante varchar(40),
+ primary key(cod_resgistrante)
+) 
 
 ///////////// CREANDO LOS FORMS DE DIBUJO PLANTA Y ANIMAL FOTO /////
 
@@ -213,9 +192,21 @@ alter table FOTOSEMILLA
 
 ////////////////////////////////////////////////////
 
+CREATE TABLE DEPARTAMENTO (
+  cod_dpto integer not null,
+  nom_dpto varchar(20)not null,
+  primary key(cod_dpto)
+)
 
 
+CREATE TABLE MUNICIPIOS (
+  cod_mncp varchar(8) not null,
+  cod_dpto integer,   
+  nom_mncp varchar(20),
+  primary key(cod_mncp)
+)
 
-
-
-
+alter table MUNICIPIOS
+  add constraint depmun
+  foreign key (cod_dpto)
+  references DEPARTAMENTO (cod_dpto);
