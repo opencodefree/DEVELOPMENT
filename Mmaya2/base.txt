@@ -33,7 +33,7 @@ create table animal(
   fecha_registro varchar(10),
   fuente_de_datos varchar(25),
   idioma_region varchar(30),
-  uso_combinado varchar(10),
+  uso_combinado varchar(100),
   observaciones varchar(200),
   primary key(cod_animal)
  );
@@ -69,7 +69,7 @@ create table animal(
   parte_uso varchar(1000),
   manera_uso varchar(1000),
   descripcion_pla varchar(2000),
-  uso_combinado varchar(10),
+  uso_combinado varchar(100),
   observaciones varchar(200),
   primary key(cod_planta)
  );
