@@ -27,12 +27,12 @@ create table animal(
   tipo_uso varchar(200),
   parte_uso varchar(1000),
   manera_uso varchar(1000),
-  desplazamiento varchar(30),
   descripcion_animal varchar(2000), 
   fecha_registro varchar(10),
   fuente_de_datos varchar(25),
   idioma_region varchar(30),
   uso_combinado varchar(10),
+  observaciones varchar(200),
   primary key(cod_animal)
  );
 
@@ -66,6 +66,7 @@ create table animal(
   manera_uso varchar(1000),
   descripcion_pla varchar(2000),
   uso_combinado varchar(10),
+  observaciones varchar(200),
   primary key(cod_planta)
  );
 
@@ -89,6 +90,13 @@ alter table MUNICIPIOS
   references DEPARTAMENTO (cod_dpto); 
 
 
+CREATE TABLE REGISTRANTE(
+ cod_registrante varchar(8) not null,
+ nom_registrante varchar(40),
+ am_registrante varchar(40),
+ ap_registrante varchar(40),
+ primary key(cod_registrante)
+) 
 
 alter table animal
   add constraint regani
@@ -138,15 +146,7 @@ alter table planta
 
 
 
- ///////TABLA UTIL //////
-
-CREATE TABLE REGISTRANTE(
- cod_registrante varchar(8) not null,
- nom_registrante varchar(40),
- am_registrante varchar(40),
- ap_registrante varchar(40),
- primary key(cod_registrante)
-) 
+ 
 
 ///////////// CREANDO LOS FORMS DE DIBUJO PLANTA Y ANIMAL FOTO /////
 
