@@ -106,18 +106,18 @@ alter table animal
 alter table animal
   add constraint aniregis
   foreign key (cod_registrante)
-  references usuario (cod_registrante); 
+  references registrante (cod_registrante); 
 
 alter table animal
   add constraint anidpto
   foreign key (cod_dpto)
-  references usuario (cod_dpto);            
+  references departamento (cod_dpto);            
     
 
 alter table animal
   add constraint animncp
   foreign key (cod_mncp)
-  references usuario (cod_mncp);     
+  references municipios (cod_mncp);     
 
 
 alter table planta
