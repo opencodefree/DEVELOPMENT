@@ -104,19 +104,19 @@ alter table planta
 alter table planta
   add constraint plaregis
   foreign key (cod_registrante)
-  references usuario (cod_registrante); 
+  references registrante(cod_registrante); 
 
 
 alter table planta
   add constraint plandpto
   foreign key (cod_dpto)
-  references usuario (cod_dpto); 
+  references departamento (cod_dpto); 
 
 
 alter table planta
   add constraint plamncp
   foreign key (cod_mncp)
-  references usuario (cod_mncp);    
+  references municipios (cod_mncp);     
 
 
 
@@ -128,7 +128,7 @@ CREATE TABLE REGISTRANTE(
  nom_registrante varchar(40),
  am_registrante varchar(40),
  ap_registrante varchar(40),
- primary key(cod_resgistrante)
+ primary key(cod_registrante)
 ) 
 
 ///////////// CREANDO LOS FORMS DE DIBUJO PLANTA Y ANIMAL FOTO /////
@@ -210,6 +210,7 @@ alter table MUNICIPIOS
   add constraint depmun
   foreign key (cod_dpto)
   references DEPARTAMENTO (cod_dpto); 
+
 
 
 
