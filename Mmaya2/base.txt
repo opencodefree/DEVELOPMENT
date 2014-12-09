@@ -84,7 +84,7 @@ CREATE TABLE DEPARTAMENTO (
 CREATE TABLE MUNICIPIOS (
   cod_mncp varchar(8) not null,
   cod_dpto integer,   
-  nom_mncp varchar(20),
+  nom_mncp varchar(40),
   primary key(cod_mncp)
 );
 
