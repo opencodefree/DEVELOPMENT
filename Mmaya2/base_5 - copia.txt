@@ -1,0 +1,212 @@
+create table region(
+  cod_region serial,
+  tipo_region varchar(60),
+  ecoregion varchar(60),
+  primary key(cod_region)
+ );
+
+create table animal(
+  cod_animal varchar(8),
+  cod_region integer, 
+  cod_registrante varchar(8), 
+  cod_dpto integer,
+  cod_mncp varchar(8),
+  nombre_nativo varchar(50),
+  nombre_cientifico varchar(50),
+  nombre_tco varchar(50),   
+  nombre_comunidad varchar(100),  
+  nom_repnat varchar(100),  
+  cargo_repnat varchar(50),   
+  especie varchar(30),
+  color varchar(50),
+  coorx double,
+  coory double,
+  foto_animal bytea,
+  dibujo bytea,
+  acta_ani bytea,
+  tipo_uso varchar(200),
+  parte_uso varchar(1000),
+  manera_uso varchar(1000),
+  desplazamiento varchar(30),
+  descripcion_animal varchar(2000), 
+  fecha_registro varchar(10),
+  fuente_de_datos varchar(25),
+  idioma_region varchar(30),
+  uso_combinado varchar(10),
+  primary key(cod_animal)
+ );
+
+
+ create table planta(
+  cod_planta varchar(8),
+  cod_region integer,
+  cod_registrante varchar(8),
+  cod_dpto integer,
+  cod_mncp varchar(8),
+  nombre_nativo varchar(50),
+  nombre_cientifico varchar(50),
+  nombre_tco varchar(50),   
+  nombre_comunidad varchar(100),  
+  nom_repnat varchar(100),  
+  cargo_repnat varchar(50),   
+  tipo_planta varchar(25),
+  color_planta varchar(25),
+  coorx double,
+  coory double,
+  foto_semilla bytea,
+  foto_planta bytea,
+  dibujo bytea,
+  acta_pla bytea,
+  mes_semilla varchar(12),
+  fecha_registro varchar(10),
+  fuente_de_datos varchar(150),
+  idioma_region varchar(20),
+  tipo_uso varchar(200),
+  parte_uso varchar(1000),
+  manera_uso varchar(1000),
+  descripcion_pla varchar(2000),
+  uso_combinado varchar(10),
+  primary key(cod_planta)
+ );
+
+
+
+
+
+alter table animal
+  add constraint regani
+  foreign key (cod_region)
+  references region (cod_region); 
+
+alter table animal
+  add constraint aniregis
+  foreign key (cod_registrante)
+  references usuario (cod_registrante); 
+
+alter table animal
+  add constraint anidpto
+  foreign key (cod_dpto)
+  references usuario (cod_dpto);            
+    
+
+alter table animal
+  add constraint animncp
+  foreign key (cod_mncp)
+  references usuario (cod_mncp);     
+
+
+alter table planta
+  add constraint regpla
+  foreign key (cod_region)
+  references region (cod_region); 
+
+
+alter table planta
+  add constraint plaregis
+  foreign key (cod_registrante)
+  references usuario (cod_registrante); 
+
+
+alter table planta
+  add constraint plandpto
+  foreign key (cod_dpto)
+  references usuario (cod_dpto); 
+
+
+alter table planta
+  add constraint plamncp
+  foreign key (cod_mncp)
+  references usuario (cod_mncp);    
+
+
+
+
+ ///////TABLA UTIL //////
+
+CREATE TABLE REGISTRANTE(
+ cod_registrante varchar(8) not null,
+ nom_registrante varchar(40),
+ am_registrante varchar(40),
+ ap_registrante varchar(40),
+ primary key(cod_resgistrante)
+) 
+
+///////////// CREANDO LOS FORMS DE DIBUJO PLANTA Y ANIMAL FOTO /////
+
+
+  CREATE TABLE FOTOANIMAL (
+  cod_foto serial not null,
+  cod_animal varchar(8)not null,
+  foto bytea
+  )
+
+alter table FOTOANIMAL
+  add constraint fotan
+  foreign key (cod_animal)
+  references animal (cod_animal); 
+
+ CREATE TABLE FOTOANIMALDIBUJO (
+  cod_fotod serial not null,
+  cod_animal varchar(8)not null,
+  foto bytea
+  )
+
+alter table FOTOANIMALDIBUJO
+  add constraint fotand
+  foreign key (cod_animal)
+  references animal (cod_animal); 
+
+
+  CREATE TABLE FOTOPLANTA(
+  cod_foto serial not null,
+  cod_planta varchar(8) not null,
+  foto bytea
+)
+
+alter table FOTOPLANTA
+  add constraint fotpla
+  foreign key (cod_planta)
+  references planta (cod_planta);   
+
+  CREATE TABLE FOTOPLANTADIBUJO(
+  cod_fotod serial not null,
+  cod_planta varchar(8) not null,
+  foto bytea
+)
+
+alter table FOTOPLANTADIBUJO
+  add constraint fotplad
+  foreign key (cod_planta)
+  references planta (cod_planta); 
+
+CREATE TABLE FOTOSEMILLA(
+  cod_fotose serial not null,
+  cod_planta varchar(8) not null,
+  foto bytea
+)
+
+alter table FOTOSEMILLA
+  add constraint fotplase
+  foreign key (cod_planta)
+  references planta (cod_planta); 
+
+////////////////////////////////////////////////////
+
+CREATE TABLE DEPARTAMENTO (
+  cod_dpto integer not null,
+  nom_dpto varchar(20)not null,
+  primary key(cod_dpto)
+)
+
+
+CREATE TABLE MUNICIPIOS (
+  cod_mncp varchar(8) not null,
+  cod_dpto integer,   
+  nom_mncp varchar(20),
+  primary key(cod_mncp)
+)
+
+alter table MUNICIPIOS
+  add constraint depmun
+  foreign key (cod_dpto)
+  references DEPARTAMENTO (cod_dpto);

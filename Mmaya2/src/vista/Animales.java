@@ -59,6 +59,8 @@ public class Animales extends javax.swing.JInternalFrame {
         lblerrorParteUso1.setVisible(false);
         lblFotoAnimal1.setVisible(true);
         lblDibAnimal1.setVisible(true);
+        AcodDep.setVisible(false);  
+        AmunCod.setVisible(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         int horizontal=(pantalla.width-ventana.width)/2;
@@ -109,6 +111,37 @@ public class Animales extends javax.swing.JInternalFrame {
              ResultSet rs=sent.executeQuery("SELECT * FROM MUNICIPIOS");
              while(rs.next()){
                   this.cmbMunicipio.addItem(rs.getString("nom_mncp"));
+             }
+             
+         }
+         catch(Exception e){
+             JOptionPane.showMessageDialog(null,e);
+         }
+         
+           // MOSTRANDO DATOS DE DEPARTAMENTOS EN EL COMBOBOX 
+         this.cmbDepto.removeAllItems();
+         try{
+             Connection cn=getConexion();
+             Statement sent=cn.createStatement();
+             ResultSet rs=sent.executeQuery("SELECT * FROM DEPARTAMENTO");
+             while(rs.next()){
+                  this.cmbDepto.addItem(rs.getString("nom_dpto"));
+             }
+             
+         }
+         catch(Exception e){
+             JOptionPane.showMessageDialog(null,e);
+         }
+         
+         
+          // MOSTRANDO DATOS DE RESGITRANTE EN EL COMBOBOX 
+         this.cmbRegisCI.removeAllItems();
+         try{
+             Connection cn=getConexion();
+             Statement sent=cn.createStatement();
+             ResultSet rs=sent.executeQuery("SELECT * FROM registrante");
+             while(rs.next()){
+                  this.cmbRegisCI.addItem(rs.getString("cod_registrante"));
              }
              
          }
@@ -190,6 +223,8 @@ public class Animales extends javax.swing.JInternalFrame {
         cmbDepto = new javax.swing.JComboBox();
         jLabel52 = new javax.swing.JLabel();
         cmbTipoRegion = new javax.swing.JComboBox();
+        AcodDep = new javax.swing.JTextField();
+        AmunCod = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         txtCodigo = new javax.swing.JTextField();
@@ -232,6 +267,8 @@ public class Animales extends javax.swing.JInternalFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         AtxtObs = new javax.swing.JTextArea();
         lblActaAnimal = new javax.swing.JLabel();
+        cmbRegisCI = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -335,7 +372,11 @@ public class Animales extends javax.swing.JInternalFrame {
         jLabel51.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel51.setText("Tipo Region:");
 
-        cmbDepto.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "La Paz", "Cochabamba", "Potosi", "Oruro", "Chuquisaca", "Tarija", "Pando", "Beni", "Santa Cruz" }));
+        cmbDepto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbDeptoActionPerformed(evt);
+            }
+        });
 
         jLabel52.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel52.setText("Ecoregion :");
@@ -345,9 +386,9 @@ public class Animales extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -364,29 +405,35 @@ public class Animales extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbDepto, 0, 129, Short.MAX_VALUE)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel28)
+                                        .addComponent(jLabel20)
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtCoordXGrados, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
+                                        .addComponent(txtCoordYGrados)
+                                        .addComponent(txtCodReg, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                                    .addComponent(jLabel51)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(46, 46, 46)
+                                .addComponent(jLabel52)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel28)
-                                    .addComponent(jLabel20)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtCoordXGrados, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                                    .addComponent(txtCoordYGrados)
-                                    .addComponent(txtCodReg, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                                .addComponent(jLabel51)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jComboregani, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(jLabel52)
+                        .addGap(10, 10, 10)
+                        .addComponent(AcodDep, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboregani, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(AmunCod, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,11 +472,15 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel51))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboregani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel52))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(AcodDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(AmunCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jComboregani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel52)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DEL ANIMAL"));
@@ -557,7 +608,7 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblerrorParteUso2)
                 .addContainerGap())
@@ -572,12 +623,12 @@ public class Animales extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -586,6 +637,12 @@ public class Animales extends javax.swing.JInternalFrame {
         jTabbedPane1.addTab("DATOS GENERALES", jPanel4);
 
         jLabel32.setText("Datos del Registrante:");
+
+        txtRegPaterno.setEditable(false);
+
+        txtRegMaterno.setEditable(false);
+
+        txtRegNombre.setEditable(false);
 
         jLabel33.setText("Paterno");
 
@@ -620,6 +677,14 @@ public class Animales extends javax.swing.JInternalFrame {
 
         lblActaAnimal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        cmbRegisCI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRegisCIActionPerformed(evt);
+            }
+        });
+
+        jLabel24.setText("C I  Registrante  :");
+
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
@@ -630,10 +695,11 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addGap(52, 52, 52)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel32)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel36)
-                                    .addComponent(jLabel40))
+                                    .addComponent(jLabel40)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel8Layout.createSequentialGroup()
@@ -670,7 +736,8 @@ public class Animales extends javax.swing.JInternalFrame {
                                                     .addComponent(jLabel34)))
                                             .addGroup(jPanel8Layout.createSequentialGroup()
                                                 .addGap(25, 25, 25)
-                                                .addComponent(lblActaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                .addComponent(lblActaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cmbRegisCI, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel42)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
@@ -678,12 +745,16 @@ public class Animales extends javax.swing.JInternalFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel41)))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbRegisCI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel33)
                     .addComponent(jLabel34)
@@ -794,7 +865,7 @@ public class Animales extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblDibAnimal1, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
                                     .addComponent(lblFotoAnimal1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -889,7 +960,6 @@ public class Animales extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(AtxtComoUso);
 
-        chkCombinado.setActionCommand("");
         chkCombinado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkCombinadoActionPerformed(evt);
@@ -985,7 +1055,7 @@ public class Animales extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 586, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1148,37 +1218,40 @@ public class Animales extends javax.swing.JInternalFrame {
     private void btnRegAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAnimalesActionPerformed
 
              try{
-            String sql="INSERT INTO \"animal\"(cod_animal,cod_region,nombre_nativo,nombre_cientifico,nombre_tco,nombre_comunidad,nom_repnat,ap_repnat,am_repnat,cargo_repnat,especie,color,coorx,coory,foto_animal,dibujo,acta_ani,tipo_uso,parte_uso,manera_uso,descripcion_animal,fecha_registro,fuente_de_datos,idioma_region,uso_combinado,observaciones) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql="INSERT INTO \"animal\"(cod_animal,cod_region,cod_registrante,cod_dpto,cod_mncp,nombre_nativo,nombre_cientifico,nombre_tco,nombre_comunidad,nom_repnat,ap_repnat,am_repnat,cargo_repnat,especie,color,coorx,coory,foto_animal,dibujo,acta_ani,tipo_uso,parte_uso,manera_uso,descripcion_animal,fecha_registro,fuente_de_datos,idioma_region,uso_combinado,observaciones) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
            connPos cn=new connPos();
            PreparedStatement pst=cn.getConexion().prepareStatement(sql);
           
             pst.setString(1, txtCodigo.getText());
             pst.setInt(2, Integer.parseInt(txtCodReg.getText()));
-            pst.setString(3, txtNativo.getText());
-            pst.setString(4, txtCientifico.getText());
-            pst.setString(5, txtTco.getText());
-            pst.setString(6, txtComunidad.getText());
-            pst.setString(7, txtInfNombre.getText());
-            pst.setString(8, txtInfPaterno.getText());
-            pst.setString(9, txtInfMaterno.getText());  
-            pst.setString(10, txtCargo.getText());                    
-            pst.setString(11, txtEspecie.getText());
-            pst.setString(12, txtColorA.getText());
-            pst.setString(13, txtCoordXGrados.getText());
-            pst.setString(14, txtCoordYGrados.getText());
-            pst.setBinaryStream(15,fisA,longitudBytes);
-            pst.setBinaryStream(16,fisB,longitudBytes);
-            pst.setBinaryStream(17,fisC,longitudBytes);  
-            pst.setString(18, txtUso.getText());
-            pst.setString(19, txtParteUso.getText());            
-            pst.setString(20, AtxtComoUso.getText());
-            pst.setString(21,AtxtObsA.getText());
-            pst.setString(22,txtFecha.getText());
-            pst.setString(23,txtFuente.getText());
-            pst.setString(24,(String)cmbIdioma.getSelectedItem());
-            pst.setString(25,(String)chkCombinado.getText());
-            pst.setString(26,AtxtObs.getText());
+            pst.setString(3,(String)cmbRegisCI.getSelectedItem());
+            pst.setInt(4, Integer.parseInt(AcodDep.getText()));
+            pst.setString(5, AmunCod.getText()); 
+            pst.setString(6, txtNativo.getText());
+            pst.setString(7, txtCientifico.getText());
+            pst.setString(8, txtTco.getText());
+            pst.setString(9, txtComunidad.getText());
+            pst.setString(10, txtInfNombre.getText());
+            pst.setString(11, txtInfPaterno.getText());
+            pst.setString(12, txtInfMaterno.getText());  
+            pst.setString(13, txtCargo.getText());                    
+            pst.setString(14, txtEspecie.getText());
+            pst.setString(15, txtColorA.getText());
+            pst.setString(16, txtCoordXGrados.getText());
+            pst.setString(17, txtCoordYGrados.getText());
+            pst.setBinaryStream(18,fisA,longitudBytes);
+            pst.setBinaryStream(19,fisB,longitudBytes);
+            pst.setBinaryStream(20,fisC,longitudBytes);  
+            pst.setString(21, txtUso.getText());
+            pst.setString(22, txtParteUso.getText());            
+            pst.setString(23, AtxtComoUso.getText());
+            pst.setString(24,AtxtObsA.getText());
+            pst.setString(25,txtFecha.getText());
+            pst.setString(26,txtFuente.getText());
+            pst.setString(27,(String)cmbIdioma.getSelectedItem());
+            pst.setString(28,(String)chkCombinado.getText());
+            pst.setString(29,AtxtObs.getText());
            // pst.setString(10,(String)cmbDesplaza.getSelectedItem());   chkCombinado
             
            
@@ -1188,6 +1261,9 @@ public class Animales extends javax.swing.JInternalFrame {
             
             txtCodigo.setText("");
             txtCodReg.setText("");
+            cmbRegisCI.setSelectedItem("");
+            AcodDep.setText("");
+            AmunCod.setText(""); 
             txtNativo.setText("");
             txtCientifico.setText("");
             txtTco.setText("");
@@ -1211,7 +1287,7 @@ public class Animales extends javax.swing.JInternalFrame {
             txtFuente.setText("");
             cmbIdioma.setSelectedItem("");
             chkCombinado.setText("");
-             AtxtObs.setText("");
+            AtxtObs.setText("");
             
         
                   
@@ -1377,7 +1453,7 @@ public class Animales extends javax.swing.JInternalFrame {
             Statement sent1=cn.createStatement();
             ResultSet rs1=sent1.executeQuery("SELECT * FROM MUNICIPIOS WHERE nom_mncp= '"+this.cmbMunicipio.getSelectedItem()+"'");
             rs1.next();
-           // this.txtCodReg.setText(String.valueOf(rs1.getInt("cod_region")));
+           this.AmunCod.setText(String.valueOf(rs1.getInt("cod_mncp")));
         }
         catch(Exception e){
          JOptionPane.showMessageDialog(null,e);
@@ -1476,7 +1552,38 @@ public class Animales extends javax.swing.JInternalFrame {
        validarCheck();
     }//GEN-LAST:event_chkCombinadoActionPerformed
 
+    private void cmbDeptoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDeptoActionPerformed
+        try{
+            Connection cn=getConexion();
+            Statement sent1=cn.createStatement();
+            ResultSet rs1=sent1.executeQuery("SELECT * FROM DEPARTAMENTO WHERE nom_dpto= '"+this.cmbDepto.getSelectedItem()+"'");
+            rs1.next();
+            this.AcodDep.setText(String.valueOf(rs1.getInt("cod_dpto")));
+        }
+        catch(Exception e){
+         JOptionPane.showMessageDialog(null,e);
+        }           
+        
+    }//GEN-LAST:event_cmbDeptoActionPerformed
+
+    private void cmbRegisCIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRegisCIActionPerformed
+         try{
+            Connection cn=getConexion();
+            Statement sent1=cn.createStatement();
+            ResultSet rs1=sent1.executeQuery("SELECT * FROM REGISTRANTE WHERE cod_registrante= '"+this.cmbRegisCI.getSelectedItem()+"'");
+            rs1.next();
+            this.txtRegNombre.setText(String.valueOf(rs1.getString("nom_registrante")));
+            this.txtRegPaterno.setText(String.valueOf(rs1.getString("ap_registrante")));
+            this.txtRegMaterno.setText(String.valueOf(rs1.getString("am_registrante")));
+        }
+        catch(Exception e){
+         JOptionPane.showMessageDialog(null,e);
+        }  
+    }//GEN-LAST:event_cmbRegisCIActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField AcodDep;
+    private javax.swing.JTextField AmunCod;
     private javax.swing.JTextArea AtxtComoUso;
     private javax.swing.JTextArea AtxtObs;
     private javax.swing.JTextArea AtxtObsA;
@@ -1487,6 +1594,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox cmbDepto;
     private javax.swing.JComboBox cmbIdioma;
     private javax.swing.JComboBox cmbMunicipio;
+    private javax.swing.JComboBox cmbRegisCI;
     private javax.swing.JComboBox cmbTipoRegion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1508,6 +1616,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
