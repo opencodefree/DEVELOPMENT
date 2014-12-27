@@ -154,9 +154,6 @@ public class Registrante extends javax.swing.JInternalFrame {
                                         .addGap(164, 164, 164)
                                         .addComponent(jLabel1))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(71, 71, 71)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(79, 79, 79)
@@ -173,7 +170,10 @@ public class Registrante extends javax.swing.JInternalFrame {
                                             .addComponent(txtCodRegistrante)
                                             .addComponent(txtPaterno)
                                             .addComponent(txtMatern)
-                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(71, 71, 71)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(114, 114, 114)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -215,7 +215,7 @@ public class Registrante extends javax.swing.JInternalFrame {
                         .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBorrar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,9 +267,6 @@ public class Registrante extends javax.swing.JInternalFrame {
         ecoregion=this.tablaRegistrante.getValueAt(fila, 2).toString();
         dpto=this.tablaRegistrante.getValueAt(fila, 3).toString();
         
-        editaRegion er= new editaRegion(cod_region, tipo_region, ecoregion, dpto);
-        er.setVisible(true);
-        this.dispose();
         
     }//GEN-LAST:event_btnActualizarActionPerformed
 

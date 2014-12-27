@@ -18,6 +18,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -29,13 +31,14 @@ import static vista.Animales.res;
 
 public class Plantas extends javax.swing.JInternalFrame {
   
+    static ResultSet res; 
     public FileInputStream fisfoto;
     FileInputStream fisI;
     
-        public FileInputStream fisA;
-           public FileInputStream fisB;
-              public FileInputStream fisC;
-                 public FileInputStream fisD;
+        public FileInputStream fisD;
+           public FileInputStream fisE;
+              public FileInputStream fisF;
+                 public FileInputStream fisG;
          int longitudBytes;         
                   
     public Plantas() {
@@ -49,7 +52,9 @@ public class Plantas extends javax.swing.JInternalFrame {
         lblerrorParteUso.setVisible(false);
         lblerrorManeraUso.setVisible(false);
         lblerrorParteUso2.setVisible(false);
-        
+        txtCodDepPla.setVisible(false);
+        txtCodMunPla.setVisible(false);
+        btnBorrarPlanta.setVisible(false);
         Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension ventana = this.getSize();
         int horizontal=(pantalla.width-ventana.width)/2;
@@ -144,14 +149,18 @@ public class Plantas extends javax.swing.JInternalFrame {
 //                            + "nro_de_registro_planta,fecha_registro,fuente_de_datos,"
 //                            + "idioma_region,tipo_uso,parte_uso,manera_uso,descripcion_pla FROM PLANTA");
       
-       res = conexion.connPos.Consulta("SELECT cod_planta FROM PLANTA");
+       res = conexion.connPos.Consulta("SELECT cod_planta,nombre_nativo,nombre_cientifico,tipo_uso,parte_uso,manera_uso,descripcion_pla,observaciones FROM PLANTA");
        try{
          while(res.next()){
              Vector v = new Vector();
              v.add(res.getString(1));
-//             v.add(res.getInt(2));
-//             v.add(res.getString(3));
-//             v.add(res.getString(4));
+             v.add(res.getString(2));
+             v.add(res.getString(3));
+             v.add(res.getString(4));
+             v.add(res.getString(5));
+             v.add(res.getString(6));
+             v.add(res.getString(7));
+             v.add(res.getString(8));
 //             v.add(res.getString(5));
 //             v.add(res.getString(6));
 //             v.add(res.getString(7));
@@ -176,6 +185,8 @@ public class Plantas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -221,31 +232,6 @@ public class Plantas extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtRegPla = new javax.swing.JTextPane();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel32 = new javax.swing.JLabel();
-        txtRegPaterno = new javax.swing.JTextField();
-        txtRegMaterno = new javax.swing.JTextField();
-        txtRegNombre = new javax.swing.JTextField();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel36 = new javax.swing.JLabel();
-        jLabel37 = new javax.swing.JLabel();
-        txtInfPaterno = new javax.swing.JTextField();
-        jLabel38 = new javax.swing.JLabel();
-        txtInfMaterno = new javax.swing.JTextField();
-        jLabel39 = new javax.swing.JLabel();
-        txtInfNombre = new javax.swing.JTextField();
-        jLabel40 = new javax.swing.JLabel();
-        txtCargo = new javax.swing.JTextField();
-        btnActa = new javax.swing.JButton();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel42 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        AtxtObs = new javax.swing.JTextArea();
-        cmbRegPla = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        lblFotoActaPla = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -281,6 +267,31 @@ public class Plantas extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         chkCombinado = new javax.swing.JCheckBox();
         jLabel14 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel32 = new javax.swing.JLabel();
+        txtRegPaterno = new javax.swing.JTextField();
+        txtRegMaterno = new javax.swing.JTextField();
+        txtRegNombre = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        txtInfPaterno = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
+        txtInfMaterno = new javax.swing.JTextField();
+        jLabel39 = new javax.swing.JLabel();
+        txtInfNombre = new javax.swing.JTextField();
+        jLabel40 = new javax.swing.JLabel();
+        txtCargo = new javax.swing.JTextField();
+        btnActa = new javax.swing.JButton();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        AtxtObs = new javax.swing.JTextArea();
+        cmbRegPla = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+        lblFotoActaPla = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         btnRegPlantas = new javax.swing.JButton();
         btnActPlan = new javax.swing.JButton();
@@ -289,6 +300,15 @@ public class Plantas extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jScrollPane5 = new javax.swing.JScrollPane();
         tablaPlanta = new javax.swing.JTable();
+
+        jMenuItem1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jMenuItem1.setText("MODIFICAR");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
 
         setTitle("REGISTRAR PLANTAS");
         setAutoscrolls(true);
@@ -367,25 +387,27 @@ public class Plantas extends javax.swing.JInternalFrame {
         pnlDatosRegPlantaLayout.setHorizontalGroup(
             pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
-                .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel18)
-                    .addComponent(txtCodDepPla))
-                .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
-                        .addGap(19, 19, 19)
                         .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtComunidad)
-                            .addComponent(txtTco, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel18))
+                        .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbMunicipio, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtComunidad)
+                                    .addComponent(txtTco, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbDepto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbDepto, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
+                        .addComponent(txtCodDepPla, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCodMunPla, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCodMunPla, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -415,7 +437,7 @@ public class Plantas extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel51)
                                 .addGap(18, 18, 18)
                                 .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 31, Short.MAX_VALUE)))
                 .addGap(34, 34, 34))
         );
         pnlDatosRegPlantaLayout.setVerticalGroup(
@@ -434,10 +456,12 @@ public class Plantas extends javax.swing.JInternalFrame {
                         .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtCoordY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel47))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel51)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel51)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosRegPlantaLayout.createSequentialGroup()
+                                .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3))))
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
                         .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel16)
@@ -455,17 +479,16 @@ public class Plantas extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel18)
                                     .addComponent(txtTco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(cmbMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 1, Short.MAX_VALUE)
                         .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboRegPlan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)))
                     .addGroup(pnlDatosRegPlantaLayout.createSequentialGroup()
                         .addGroup(pnlDatosRegPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtCodDepPla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCodMunPla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCodDepPla, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodMunPla, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
@@ -537,7 +560,7 @@ public class Plantas extends javax.swing.JInternalFrame {
                 .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
                         .addComponent(lblerrorParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(346, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
                         .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +571,7 @@ public class Plantas extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 11, Short.MAX_VALUE)
                                 .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
                                         .addComponent(jLabel30)
@@ -562,20 +585,21 @@ public class Plantas extends javax.swing.JInternalFrame {
                                         .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(txtNombreNativo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCodigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
-                                                .addComponent(jLabel29)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
-                                                .addComponent(jLabel31)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
                                         .addGap(24, 24, 24)
+                                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
+                                                .addComponent(jLabel31)
+                                                .addGap(33, 33, 33))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
+                                                .addComponent(jLabel29)
+                                                .addGap(60, 60, 60)))
+                                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -585,39 +609,32 @@ public class Plantas extends javax.swing.JInternalFrame {
             pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29)
+                    .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
                 .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
-                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel7)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel28)
-                                    .addComponent(txtNombreNativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel30)
-                                    .addComponent(txtNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(16, 16, 16))
-                            .addGroup(pnlDatosPlantaLayout.createSequentialGroup()
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel29))
-                                .addGap(4, 4, 4)
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel31))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(28, 28, 28)))
+                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel28)
+                            .addComponent(txtNombreNativo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31)
+                            .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(12, 12, 12)
+                        .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel30)
+                            .addComponent(txtNombreCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addGap(16, 16, 16)
                         .addGroup(pnlDatosPlantaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(jLabel13)))
-                    .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosPlantaLayout.createSequentialGroup()
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -631,10 +648,10 @@ public class Plantas extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlDatosPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDatosRegPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlDatosRegPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlDatosPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,156 +664,6 @@ public class Plantas extends javax.swing.JInternalFrame {
         );
 
         jTabbedPane1.addTab("DATOS GENERALES", jPanel4);
-
-        jLabel32.setText("Datos del Registrante:");
-
-        jLabel33.setText("Paterno");
-
-        jLabel34.setText("Materno");
-
-        jLabel35.setText("Nombre(s)");
-
-        jLabel36.setText("Datos del Informante");
-
-        jLabel37.setText("Paterno");
-
-        jLabel38.setText("Materno");
-
-        jLabel39.setText("Nombre(s)");
-
-        jLabel40.setText("Cargo del Informante");
-
-        btnActa.setText("Examinar ...");
-        btnActa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActaActionPerformed(evt);
-            }
-        });
-
-        jLabel41.setText("Cargar foto de Acta");
-
-        jLabel42.setText("Observaciones (Anexos, datos extras anotar si existen grabaciones o videos anexos adjuntos)");
-
-        AtxtObs.setColumns(20);
-        AtxtObs.setRows(5);
-        jScrollPane7.setViewportView(AtxtObs);
-
-        cmbRegPla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbRegPlaActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("C.I. Registrante :");
-
-        lblFotoActaPla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel42)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel36)
-                            .addComponent(jLabel40)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRegPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel33))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRegMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel34))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel35)))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(btnActa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtCargo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtInfPaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-                                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel8Layout.createSequentialGroup()
-                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtInfMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel38))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtInfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel39)))
-                                    .addComponent(lblFotoActaPla, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(cmbRegPla, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane7))
-                .addContainerGap(48, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbRegPla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(jLabel34)
-                    .addComponent(jLabel35))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRegPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32))
-                .addGap(37, 37, 37)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel38)
-                            .addComponent(jLabel39))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtInfPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtInfMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtInfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addComponent(jLabel41)
-                        .addGap(26, 26, 26))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(lblFotoActaPla, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel40)
-                                    .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnActa)
-                                .addGap(26, 26, 26)))))
-                .addComponent(jLabel42)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-        );
-
-        jTabbedPane1.addTab("DATOS DE LA FUENTE", jPanel8);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("DESCRIPCION DE LA PLANTA"));
 
@@ -938,14 +805,14 @@ public class Plantas extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MORFOLOGIA", jPanel5);
@@ -1087,17 +954,167 @@ public class Plantas extends javax.swing.JInternalFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("USO", jPanel6);
+
+        jLabel32.setText("Datos del Registrante:");
+
+        jLabel33.setText("Paterno");
+
+        jLabel34.setText("Materno");
+
+        jLabel35.setText("Nombre(s)");
+
+        jLabel36.setText("Datos del Informante");
+
+        jLabel37.setText("Paterno");
+
+        jLabel38.setText("Materno");
+
+        jLabel39.setText("Nombre(s)");
+
+        jLabel40.setText("Cargo del Informante");
+
+        btnActa.setText("Examinar ...");
+        btnActa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActaActionPerformed(evt);
+            }
+        });
+
+        jLabel41.setText("Cargar foto de Acta");
+
+        jLabel42.setText("Observaciones (Anexos, datos extras anotar si existen grabaciones o videos anexos adjuntos)");
+
+        AtxtObs.setColumns(20);
+        AtxtObs.setRows(5);
+        jScrollPane7.setViewportView(AtxtObs);
+
+        cmbRegPla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRegPlaActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("C.I. Registrante :");
+
+        lblFotoActaPla.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel42)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel36)
+                            .addComponent(jLabel40)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRegPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel33))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRegMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel34))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel35)))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(btnActa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtCargo, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtInfPaterno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                                    .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel8Layout.createSequentialGroup()
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtInfMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel38))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtInfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel39)))
+                                    .addComponent(lblFotoActaPla, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cmbRegPla, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane7))
+                .addContainerGap(93, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cmbRegPla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel34)
+                    .addComponent(jLabel35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtRegPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRegMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRegNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel36)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel37)
+                            .addComponent(jLabel38)
+                            .addComponent(jLabel39))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtInfPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtInfMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtInfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(jLabel41)
+                        .addGap(26, 26, 26))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addComponent(lblFotoActaPla, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel8Layout.createSequentialGroup()
+                                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel40)
+                                    .addComponent(txtCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnActa)
+                                .addGap(26, 26, 26)))))
+                .addComponent(jLabel42)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
+        );
+
+        jTabbedPane1.addTab("DATOS DE LA FUENTE", jPanel8);
 
         txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtFecha.setText("jTextField1");
@@ -1142,15 +1159,16 @@ public class Plantas extends javax.swing.JInternalFrame {
 
         tablaPlanta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "codigo de planta", "codigo de region", "nombre nativo", "nombre cientifico", "tipo de planta ", "color planta", "mes produccion semilla", "numero de registro", "fecha de registro", "fuente de datos", "idioma", "tipo de uso", "parte de uso", "manera de uso", "descripcion"
+                "codigo de planta", "nombre nativo", "nombre cientifico", "tipo uso", "parte uso", "manera uso", "descripcion ", "observaciones"
             }
         ));
+        tablaPlanta.setComponentPopupMenu(jPopupMenu1);
         jScrollPane5.setViewportView(tablaPlanta);
 
         jScrollPane3.setViewportView(jScrollPane5);
@@ -1163,9 +1181,6 @@ public class Plantas extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -1174,20 +1189,22 @@ public class Plantas extends javax.swing.JInternalFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(33, 33, 33)))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnRegPlantas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnActPlan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBorrarPlanta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addGap(331, 331, 331)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnActPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRegPlantas, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBorrarPlanta)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 841, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 816, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1200,21 +1217,21 @@ public class Plantas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
+                        .addGap(50, 50, 50)
                         .addComponent(btnRegPlantas, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
+                        .addGap(18, 18, 18)
                         .addComponent(btnActPlan, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)
+                        .addGap(34, 34, 34)
                         .addComponent(btnBorrarPlanta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel6)
-                        .addGap(4, 4, 4)))
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(105, 105, 105))
         );
 
         pack();
@@ -1266,10 +1283,10 @@ public class Plantas extends javax.swing.JInternalFrame {
             pst.setString(15, txtColor.getText());  
             pst.setString(16, txtCoordX.getText());
             pst.setString(17, txtCoordY.getText());
-            pst.setBinaryStream(18,fisA,longitudBytes);
-            pst.setBinaryStream(19,fisB,longitudBytes);
-            pst.setBinaryStream(20,fisC,longitudBytes);  
-            pst.setBinaryStream(21,fisD,longitudBytes); 
+            pst.setBinaryStream(18,fisD,longitudBytes);
+            pst.setBinaryStream(19,fisE,longitudBytes);
+            pst.setBinaryStream(20,fisF,longitudBytes);  
+            pst.setBinaryStream(21,fisG,longitudBytes); 
             pst.setString(22, (String)cmbMesProduccion.getSelectedItem());
             pst.setString(23,txtFecha.getText());
             pst.setString(24,txtFuente.getText());  
@@ -1340,46 +1357,76 @@ public class Plantas extends javax.swing.JInternalFrame {
     private void btnActPlanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActPlanActionPerformed
        
         
-        String cod_planta;
-        int cod_region;
-        String nombre_nativo;
-        String nombre_cientifico;
-        String tipo_planta;
-        String color_planta;
-        String mes_semilla;
-        String nro_de_registro_planta;
-        String fecha_registro;
-        String fuente_de_datos;
-        String idioma_region;
-        String tipo_uso;
-        String parte_uso;
-        String manera_uso;
-        String descripcion_pla; 
+         try {
+            Connection cn=getConexion();
+           // PreparedStatement pst=cn.prepareStatement("UPDATE ANIMAL SET nombre_nativo='"+txtNativo.getText()+"',nombre_cientifico='"+txtCientifico.getText()+"',tipo_uso='"+txtUso.getText()+"',parte_uso='"+txtParteUso.getText()+"',manera_uso='"+AtxtComoUso.getText()+"',descripcion_animal='"+AtxtObsA.getText()+"',observaciones='"+AtxtObs2.getText()+"' WHERE cod_animal='"+txtCodigo.getText()+"'");
+          
+            PreparedStatement pst=cn.prepareStatement("UPDATE PLANTA SET nombre_nativo=?,nombre_cientifico=?,tipo_uso=?,parte_uso=?,manera_uso=?,descripcion_pla=?,observaciones=? WHERE cod_planta='"+txtCodigo.getText()+"'");
+           
+            pst.setString(1,txtNombreNativo.getText());
+            pst.setString(2, txtNombreCientifico.getText());
+            pst.setString(3, txtUso.getText());
+            pst.setString(4, txtParteUso.getText());
+            pst.setString(5, txtComoUso.getText());
+            pst.setString(6,txtDescripcionPlanta.getText());
+            pst.setString(7, AtxtObs.getText());
+          
+            int N=pst.executeUpdate();
+         
+            if(N>0){
+            JOptionPane.showMessageDialog(null,"adicionado correctamente");
+            cargaTodoPlanta();
+                    }
+            else{
+               JOptionPane.showMessageDialog(null,"error no se adiciono");
+            }
+                
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        int fila = this.tablaPlanta.getSelectedRow();
         
-        cod_planta=this.tablaPlanta.getValueAt(fila, 0).toString();
-        cod_region=Integer.parseInt(this.tablaPlanta.getValueAt(fila, 1).toString());
-        nombre_nativo=this.tablaPlanta.getValueAt(fila, 2).toString();
-        nombre_cientifico=this.tablaPlanta.getValueAt(fila, 3).toString();
-        tipo_planta=this.tablaPlanta.getValueAt(fila, 4).toString();
-        color_planta=this.tablaPlanta.getValueAt(fila, 5).toString();
-        mes_semilla=this.tablaPlanta.getValueAt(fila, 6).toString();
-        nro_de_registro_planta=this.tablaPlanta.getValueAt(fila, 7).toString();
-        fecha_registro=this.tablaPlanta.getValueAt(fila, 8).toString();
-        fuente_de_datos=this.tablaPlanta.getValueAt(fila, 9).toString();
-        idioma_region=this.tablaPlanta.getValueAt(fila, 10).toString();
-        tipo_uso=this.tablaPlanta.getValueAt(fila, 11).toString();
-        parte_uso=this.tablaPlanta.getValueAt(fila, 12).toString();
-        manera_uso=this.tablaPlanta.getValueAt(fila, 13).toString();
-        descripcion_pla=this.tablaPlanta.getValueAt(fila, 14).toString();
-        
-        editaPlanta ep= new editaPlanta(cod_planta,cod_region,nombre_nativo,nombre_cientifico,tipo_planta,color_planta,mes_semilla,
-                            nro_de_registro_planta,fecha_registro,fuente_de_datos,idioma_region,tipo_uso,parte_uso,
-                            manera_uso,descripcion_pla);
-        
-        ep.setVisible(true);
-        this.dispose();
+//        String cod_planta;
+//        int cod_region;
+//        String nombre_nativo;
+//        String nombre_cientifico;
+//        String tipo_planta;
+//        String color_planta;
+//        String mes_semilla;
+//        String nro_de_registro_planta;
+//        String fecha_registro;
+//        String fuente_de_datos;
+//        String idioma_region;
+//        String tipo_uso;
+//        String parte_uso;
+//        String manera_uso;
+//        String descripcion_pla; 
+//        
+//        int fila = this.tablaPlanta.getSelectedRow();
+//        
+//        cod_planta=this.tablaPlanta.getValueAt(fila, 0).toString();
+//        cod_region=Integer.parseInt(this.tablaPlanta.getValueAt(fila, 1).toString());
+//        nombre_nativo=this.tablaPlanta.getValueAt(fila, 2).toString();
+//        nombre_cientifico=this.tablaPlanta.getValueAt(fila, 3).toString();
+//        tipo_planta=this.tablaPlanta.getValueAt(fila, 4).toString();
+//        color_planta=this.tablaPlanta.getValueAt(fila, 5).toString();
+//        mes_semilla=this.tablaPlanta.getValueAt(fila, 6).toString();
+//        nro_de_registro_planta=this.tablaPlanta.getValueAt(fila, 7).toString();
+//        fecha_registro=this.tablaPlanta.getValueAt(fila, 8).toString();
+//        fuente_de_datos=this.tablaPlanta.getValueAt(fila, 9).toString();
+//        idioma_region=this.tablaPlanta.getValueAt(fila, 10).toString();
+//        tipo_uso=this.tablaPlanta.getValueAt(fila, 11).toString();
+//        parte_uso=this.tablaPlanta.getValueAt(fila, 12).toString();
+//        manera_uso=this.tablaPlanta.getValueAt(fila, 13).toString();
+//        descripcion_pla=this.tablaPlanta.getValueAt(fila, 14).toString();
+//        
+//        editaPlanta ep= new editaPlanta(cod_planta,cod_region,nombre_nativo,nombre_cientifico,tipo_planta,color_planta,mes_semilla,
+//                            nro_de_registro_planta,fecha_registro,fuente_de_datos,idioma_region,tipo_uso,parte_uso,
+//                            manera_uso,descripcion_pla);
+//        
+//        ep.setVisible(true);
+//        this.dispose();
        
         
     }//GEN-LAST:event_btnActPlanActionPerformed
@@ -1528,7 +1575,7 @@ public class Plantas extends javax.swing.JInternalFrame {
         int estado=j.showOpenDialog(null);
         if(estado== JFileChooser.APPROVE_OPTION){
             try{
-                fisC=new FileInputStream(j.getSelectedFile());
+                fisD=new FileInputStream(j.getSelectedFile());
                 //necesitamos saber la cantidad de bytes
                 this.longitudBytes=(int)j.getSelectedFile().length();
                 try {
@@ -1554,7 +1601,7 @@ public class Plantas extends javax.swing.JInternalFrame {
         int estado=j.showOpenDialog(null);
         if(estado== JFileChooser.APPROVE_OPTION){
             try{
-                fisC=new FileInputStream(j.getSelectedFile());
+                fisE=new FileInputStream(j.getSelectedFile());
                 //necesitamos saber la cantidad de bytes
                 this.longitudBytes=(int)j.getSelectedFile().length();
                 try {
@@ -1580,7 +1627,7 @@ public class Plantas extends javax.swing.JInternalFrame {
         int estado=j.showOpenDialog(null);
         if(estado== JFileChooser.APPROVE_OPTION){
             try{
-                fisC=new FileInputStream(j.getSelectedFile());
+                fisF=new FileInputStream(j.getSelectedFile());
                 //necesitamos saber la cantidad de bytes
                 this.longitudBytes=(int)j.getSelectedFile().length();
                 try {
@@ -1606,7 +1653,7 @@ public class Plantas extends javax.swing.JInternalFrame {
         int estado=j.showOpenDialog(null);
         if(estado== JFileChooser.APPROVE_OPTION){
             try{
-                fisC=new FileInputStream(j.getSelectedFile());
+                fisG=new FileInputStream(j.getSelectedFile());
                 //necesitamos saber la cantidad de bytes
                 this.longitudBytes=(int)j.getSelectedFile().length();
                 try {
@@ -1641,6 +1688,55 @@ public class Plantas extends javax.swing.JInternalFrame {
      validarCheck();
      
     }//GEN-LAST:event_chkCombinadoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       
+         int fila = tablaPlanta.getSelectedRow();
+  
+    if(fila>=0)
+    {
+     
+       //  nombre_nativo,nombre_cientifico,tipo_uso,parte_uso,manera_uso,descripcion_animal
+        txtCodigo.setText(tablaPlanta.getValueAt(fila, 0).toString());
+        txtNombreNativo.setText(tablaPlanta.getValueAt(fila, 1).toString());
+        txtNombreCientifico.setText(tablaPlanta.getValueAt(fila, 2).toString());
+        txtUso.setText(tablaPlanta.getValueAt(fila, 3).toString());
+        txtParteUso.setText(tablaPlanta.getValueAt(fila, 4).toString());
+        txtComoUso.setText(tablaPlanta.getValueAt(fila, 5).toString());
+        txtDescripcionPlanta.setText(tablaPlanta.getValueAt(fila, 6).toString());
+        AtxtObs.setText(tablaPlanta.getValueAt(fila, 7).toString());
+       
+        
+        cmbDepto.setEnabled(false);
+        cmbMunicipio.setEnabled(false);
+        txtComunidad.setEnabled(false);
+        txtTco.setEnabled(false);
+        txtCoordX.setEnabled(false);
+        txtCoordY.setEnabled(false);
+        cmbTipoRegion.setEnabled(false);
+        jComboRegPlan.setEnabled(false);
+        txtCodigo.setEnabled(false);
+        cmbIdioma.setEnabled(false);
+        txtFuente.setEnabled(false);
+        cmbRegPla.setEnabled(false);
+        txtInfPaterno.setEnabled(false);
+        txtInfMaterno.setEnabled(false);
+        txtInfNombre.setEnabled(false);
+        txtCargo.setEnabled(false);
+        btnActa.setEnabled(false);
+        txtColor.setEnabled(false);
+        cmbTipoPlanta.setEnabled(false);
+        cmbMesProduccion.setEnabled(false);
+        jButton1.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        chkCombinado.setEnabled(false);
+     }
+    else
+    {
+       JOptionPane.showMessageDialog(null, "Elija una fila...de  la Tabla");
+    }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AtxtObs;
@@ -1704,12 +1800,14 @@ public class Plantas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

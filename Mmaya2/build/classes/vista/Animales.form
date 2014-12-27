@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+  <NonVisualComponents>
+    <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
+      </Layout>
+      <SubComponents>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Microsoft Sans Serif" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="MODIFICAR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+          </Events>
+        </MenuItem>
+        <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Microsoft Sans Serif" size="14" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="ELIMINAR"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+          </Events>
+        </MenuItem>
+      </SubComponents>
+    </Container>
+  </NonVisualComponents>
   <Properties>
     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -33,14 +65,20 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="jScrollPane7" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                      <Component id="jLabel6" min="-2" pref="171" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="257" max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="txtFecha" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jScrollPane7" alignment="0" min="-2" pref="757" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -50,7 +88,7 @@
                       <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jTabbedPane1" max="32767" attributes="0"/>
+                      <Component id="jTabbedPane1" pref="0" max="32767" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jButton1" min="-2" pref="191" max="-2" attributes="0"/>
@@ -60,11 +98,6 @@
                       <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Component id="jLabel6" min="-2" pref="171" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,14 +122,14 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jTabbedPane1" min="-2" pref="481" max="-2" attributes="0"/>
+                      <Component id="jTabbedPane1" min="-2" pref="434" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane7" min="-2" pref="71" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -131,7 +164,7 @@
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="jPanel1" min="-2" pref="172" max="-2" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel7" max="32767" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -269,18 +302,16 @@
                                   </Group>
                               </Group>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="AcodDep" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="AmunCod" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="jComboregani" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel52" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel52" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboregani" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace pref="16" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -451,22 +482,13 @@
                                       <Component id="txtNativo" max="32767" attributes="0"/>
                                       <Component id="txtCientifico" alignment="0" pref="105" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel50" min="-2" pref="163" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtNroRegAni" max="32767" attributes="0"/>
                                       <Component id="cmbIdioma" max="32767" attributes="0"/>
                                       <Component id="txtFuente" max="32767" attributes="0"/>
                                   </Group>
@@ -512,28 +534,20 @@
                               <Component id="jLabel22" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtCientifico" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                                  <Component id="txtNroRegAni" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel50" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCientifico" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="lblcontarParteUso2" min="-2" pref="17" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblcontarParteUso2" alignment="0" min="-2" pref="17" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jScrollPane1" pref="75" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" pref="39" max="32767" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="lblerrorParteUso2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -684,16 +698,6 @@
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblcontarParteUso2">
-                </Component>
-                <Component class="javax.swing.JTextField" name="txtNroRegAni">
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel50">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Tahoma" size="11" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Numero de Registro Animal : "/>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -849,7 +853,7 @@
                               <Component id="lblActaAnimal" min="-2" pref="96" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="32" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel42" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane5" min="-2" max="-2" attributes="0"/>
@@ -952,7 +956,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="AtxtObs">
+                <Component class="javax.swing.JTextArea" name="AtxtObs2">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -1010,7 +1014,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="27" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1551,34 +1555,19 @@
             <Component class="javax.swing.JTable" name="tablaAnimal">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="26" rowCount="4">
-                    <Column editable="true" title="codigo animal" type="java.lang.Object"/>
-                    <Column editable="true" title="codigo region" type="java.lang.Object"/>
+                  <Table columnCount="8" rowCount="4">
+                    <Column editable="true" title="codigo" type="java.lang.Object"/>
                     <Column editable="true" title="nombre nativo" type="java.lang.Object"/>
                     <Column editable="true" title="nombre cientifico" type="java.lang.Object"/>
-                    <Column editable="true" title="TCO" type="java.lang.Object"/>
-                    <Column editable="true" title="comunidad" type="java.lang.Object"/>
-                    <Column editable="true" title="nombre rep. nativo" type="java.lang.Object"/>
-                    <Column editable="true" title="ap rep nativo" type="java.lang.Object"/>
-                    <Column editable="true" title="am rep nativo" type="java.lang.Object"/>
-                    <Column editable="true" title="cargo rep nativo" type="java.lang.Object"/>
-                    <Column editable="true" title="especie" type="java.lang.Object"/>
-                    <Column editable="true" title="color" type="java.lang.Object"/>
-                    <Column editable="true" title="coorx" type="java.lang.Object"/>
-                    <Column editable="true" title="coory" type="java.lang.Object"/>
-                    <Column editable="true" title="foto " type="java.lang.Object"/>
-                    <Column editable="true" title="dibujo" type="java.lang.Object"/>
-                    <Column editable="true" title="acta" type="java.lang.Object"/>
-                    <Column editable="true" title="tipo de uso " type="java.lang.Object"/>
-                    <Column editable="true" title="parte en uso" type="java.lang.Object"/>
+                    <Column editable="true" title="tipo uso" type="java.lang.Object"/>
+                    <Column editable="true" title="parte uso" type="java.lang.Object"/>
                     <Column editable="true" title="manera uso" type="java.lang.Object"/>
-                    <Column editable="true" title="descripcion " type="java.lang.Object"/>
-                    <Column editable="true" title="fecha" type="java.lang.Object"/>
-                    <Column editable="true" title="fuente dato" type="java.lang.Object"/>
-                    <Column editable="true" title="idioma" type="java.lang.Object"/>
-                    <Column editable="true" title="uso combinado" type="java.lang.Object"/>
-                    <Column editable="true" title="observaciones" type="java.lang.Object"/>
+                    <Column editable="true" title="descripcion" type="java.lang.Object"/>
+                    <Column editable="true" title="obervaciones" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="componentPopupMenu" type="javax.swing.JPopupMenu" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                  <ComponentRef name="jPopupMenu1"/>
                 </Property>
               </Properties>
             </Component>

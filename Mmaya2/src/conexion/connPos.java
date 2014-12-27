@@ -202,30 +202,22 @@ public class connPos
                               String especie,String color,String tipo_uso,String parte_uso,String manera_uso,
                               String desplazamiento,String descripcion_animal,String nro_de_registro_animal,
                               String fecha_registro,String fuente_de_datos,String idioma_region)
-   {
+   {                                                                                                              
     Connection cn=getConexion();
-        try {
-            PreparedStatement pst=cn.prepareStatement("UPDATE ANIMAL SET cod_region=?,nombre_nativo=?,nombre_cientifico=?,especie=?,color=?,tipo_uso=?,parte_uso=?,manera_uso=?,desplazamiento=?,descripcion_animal=?,nro_de_registro_animal=?,fecha_registro=?,fuente_de_datos=?,idioma_region=? WHERE cod_animal=?");
-            
-            pst.setInt(1,cod_region);
-            pst.setString(2, nombre_nativo);
-            pst.setString(3, nombre_cientifico);
-            pst.setString(4, especie);
-            pst.setString(5, color);
-            pst.setString(6, tipo_uso);
-            pst.setString(7, parte_uso);
-            pst.setString(8, manera_uso);
-            pst.setString(9, desplazamiento);
-            pst.setString(10, descripcion_animal);
-            pst.setString(11, nro_de_registro_animal);
-            pst.setString(12, fecha_registro);
-            pst.setString(13, fuente_de_datos);
-            pst.setString(14, idioma_region);
-            pst.setString(15, cod_animal);
-            pst.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            PreparedStatement pst=cn.prepareStatement("UPDATE ANIMAL SET nombre_nativo='"+txtNativo.getText()+"',nombre_cientifico='"+txtCientifico.getText()+"',tipo_uso='"+txtUso.getText()+"',parte_uso='"+txtParteUso.getText()+"',manera_uso='"+AtxtComoUso.getText()+"',descripcion_animal='"+AtxtObsA.getText()+"',obervacion='"+AtxtObs.getText()+"' WHERE cod_animal=?");
+//            pst.executeUpdate();
+////            pst.setString(1,txtNativo);
+////            pst.setString(2, txtCientifico);
+////            pst.setString(3, txtUso);
+////            pst.setString(4, txtParteUso);
+////            pst.setString(5, AtxtComoUso);
+////            pst.setString(6, AtxtObs);
+////            
+//            
+//        } catch (SQLException ex) {
+//            Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
+//        }
    }
  
  public void borrarAnimal(String codigo){

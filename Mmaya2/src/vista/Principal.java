@@ -47,12 +47,6 @@ public class Principal extends javax.swing.JFrame {
         mnuReportes = new javax.swing.JMenu();
         mnuRepPlantas = new javax.swing.JMenuItem();
         mnuRepAnimales = new javax.swing.JMenuItem();
-        mnuImagenes = new javax.swing.JMenu();
-        mnuImgPlantas = new javax.swing.JMenuItem();
-        mnuImgAnimal = new javax.swing.JMenuItem();
-        mnuImgSemilla = new javax.swing.JMenuItem();
-        mnuDibPlanta = new javax.swing.JMenuItem();
-        mnuDibAnimal = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuUsuario = new javax.swing.JMenuItem();
         mnuAcerca = new javax.swing.JMenuItem();
@@ -90,12 +84,12 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar6.add(jMenu11);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new java.awt.BorderLayout());
         getContentPane().add(escritorio, java.awt.BorderLayout.CENTER);
 
         mnuForms.setText("Formularios");
@@ -150,50 +144,6 @@ public class Principal extends javax.swing.JFrame {
         mnuReportes.add(mnuRepAnimales);
 
         jMenuBar1.add(mnuReportes);
-
-        mnuImagenes.setText("Imagenes");
-
-        mnuImgPlantas.setText("Añadir Imagen de Planta");
-        mnuImgPlantas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuImgPlantasActionPerformed(evt);
-            }
-        });
-        mnuImagenes.add(mnuImgPlantas);
-
-        mnuImgAnimal.setText("Añadir Imagen de Animal");
-        mnuImgAnimal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuImgAnimalActionPerformed(evt);
-            }
-        });
-        mnuImagenes.add(mnuImgAnimal);
-
-        mnuImgSemilla.setText("Añadir Imagen de Semilla");
-        mnuImgSemilla.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuImgSemillaActionPerformed(evt);
-            }
-        });
-        mnuImagenes.add(mnuImgSemilla);
-
-        mnuDibPlanta.setText("Añadir Dibujo Planta");
-        mnuDibPlanta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuDibPlantaActionPerformed(evt);
-            }
-        });
-        mnuImagenes.add(mnuDibPlanta);
-
-        mnuDibAnimal.setText("Añadir Dibujo Animal");
-        mnuDibAnimal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnuDibAnimalActionPerformed(evt);
-            }
-        });
-        mnuImagenes.add(mnuDibAnimal);
-
-        jMenuBar1.add(mnuImagenes);
 
         mnuAyuda.setText("Ayuda");
 
@@ -287,47 +237,6 @@ public class Principal extends javax.swing.JFrame {
         p.repaint();*/
     }//GEN-LAST:event_formWindowOpened
 
-    private void mnuImgPlantasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuImgPlantasActionPerformed
-         escritorio.removeAll();
-        escritorio.repaint();
-        fotoPlanta fotoP=new fotoPlanta();
-        escritorio.add(fotoP);
-        fotoP.setVisible(true);
-    }//GEN-LAST:event_mnuImgPlantasActionPerformed
-
-    private void mnuImgAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuImgAnimalActionPerformed
-         escritorio.removeAll();
-        escritorio.repaint();
-        fotoAnimals fotoA=new fotoAnimals();
-       escritorio.add(fotoA);
-        fotoA.setVisible(true);
-       
-    }//GEN-LAST:event_mnuImgAnimalActionPerformed
-
-    private void mnuImgSemillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuImgSemillaActionPerformed
-       escritorio.removeAll();
-        escritorio.repaint();
-        fotoSemilla fotoS=new fotoSemilla();
-       escritorio.add(fotoS);
-        fotoS.setVisible(true);
-    }//GEN-LAST:event_mnuImgSemillaActionPerformed
-
-    private void mnuDibPlantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDibPlantaActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        DibujoPlanta dibPla=new DibujoPlanta();
-       escritorio.add(dibPla);
-        dibPla.setVisible(true);
-    }//GEN-LAST:event_mnuDibPlantaActionPerformed
-
-    private void mnuDibAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuDibAnimalActionPerformed
-       escritorio.removeAll();
-        escritorio.repaint();
-        DibujoAnimal dibAni=new DibujoAnimal();
-       escritorio.add(dibAni);
-        dibAni.setVisible(true);
-    }//GEN-LAST:event_mnuDibAnimalActionPerformed
-
     
     public static void main(String args[]) {
 
@@ -359,13 +268,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar6;
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenu mnuAyuda;
-    private javax.swing.JMenuItem mnuDibAnimal;
-    private javax.swing.JMenuItem mnuDibPlanta;
     private javax.swing.JMenu mnuForms;
-    private javax.swing.JMenu mnuImagenes;
-    private javax.swing.JMenuItem mnuImgAnimal;
-    private javax.swing.JMenuItem mnuImgPlantas;
-    private javax.swing.JMenuItem mnuImgSemilla;
     private javax.swing.JMenuItem mnuRegAnimales;
     private javax.swing.JMenuItem mnuRegPlantas;
     private javax.swing.JMenuItem mnuRegRegion;

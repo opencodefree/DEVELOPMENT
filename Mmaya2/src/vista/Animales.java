@@ -22,6 +22,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -66,7 +68,7 @@ public class Animales extends javax.swing.JInternalFrame {
         int horizontal=(pantalla.width-ventana.width)/2;
         int vertical=(pantalla.height-ventana.height)/2;
         this.setLocation(horizontal,vertical);
-        
+        btnBorrarAni.setVisible(false);
     
         //DESHABILITANDO MOVER LA VENTANA
         ((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
@@ -155,15 +157,21 @@ public class Animales extends javax.swing.JInternalFrame {
        DefaultTableModel modelo=(DefaultTableModel)tablaAnimal.getModel();
        modelo.setRowCount(0);
 //      res = conexion.connPos.Consulta("SELECT cod_animal,cod_region,nombre_nativo,nombre_cientifico,nombre_tco,nombre_comunidad,nom_repnat,ap_repnat,am_repnat,cargo_repnat,especie,color,coorx,coory,foto_animal,dibujo,acta_ani,tipo_uso,parte_uso,manera_uso,descripcion_animal,fecha_registro,fuente_de_datos,idioma_region,uso_combinado,observaciones FROM ANIMAL");
-       res = conexion.connPos.Consulta("SELECT cod_animal FROM ANIMAL");
+       res = conexion.connPos.Consulta("SELECT cod_animal,nombre_nativo,nombre_cientifico,tipo_uso,parte_uso,manera_uso,descripcion_animal,observaciones FROM animal");
        try{
          while(res.next()){
              Vector v = new Vector();
              v.add(res.getString(1));
+             v.add(res.getString(2));
 //             v.add(res.getInt(2));
-//             v.add(res.getString(3));
-//             v.add(res.getString(4));
-//             v.add(res.getString(5));
+             v.add(res.getString(3));
+             v.add(res.getString(4));
+             v.add(res.getString(5));
+             v.add(res.getString(6));
+             v.add(res.getString(7));
+             v.add(res.getString(8));
+             
+//             v.add(res.getString(5));  AtxtObs
 //             v.add(res.getString(6));
 //             v.add(res.getString(7));
 //             v.add(res.getString(8));
@@ -202,6 +210,9 @@ public class Animales extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel4 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -242,8 +253,6 @@ public class Animales extends javax.swing.JInternalFrame {
         lblerrorParteUso2 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         lblcontarParteUso2 = new javax.swing.JLabel();
-        txtNroRegAni = new javax.swing.JTextField();
-        jLabel50 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         txtRegPaterno = new javax.swing.JTextField();
@@ -265,7 +274,7 @@ public class Animales extends javax.swing.JInternalFrame {
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        AtxtObs = new javax.swing.JTextArea();
+        AtxtObs2 = new javax.swing.JTextArea();
         lblActaAnimal = new javax.swing.JLabel();
         cmbRegisCI = new javax.swing.JComboBox();
         jLabel24 = new javax.swing.JLabel();
@@ -309,6 +318,24 @@ public class Animales extends javax.swing.JInternalFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaAnimal = new javax.swing.JTable();
+
+        jMenuItem1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jMenuItem1.setText("MODIFICAR");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
+        jMenuItem2.setText("ELIMINAR");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
 
         setForeground(new java.awt.Color(0, 0, 0));
         setTitle("REGISTRAR ANIMALES");
@@ -472,15 +499,14 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cmbTipoRegion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel51))))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(AcodDep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(AmunCod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboregani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel52)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel52)
+                    .addComponent(jComboregani, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder("DATOS DEL ANIMAL"));
@@ -527,9 +553,6 @@ public class Animales extends javax.swing.JInternalFrame {
         jLabel13.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel13.setText("(No debe sobrepasar 2000 caracteres)");
 
-        jLabel50.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel50.setText("Numero de Registro Animal : ");
-
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -547,18 +570,12 @@ public class Animales extends javax.swing.JInternalFrame {
                             .addComponent(txtCodigo)
                             .addComponent(txtNativo)
                             .addComponent(txtCientifico, javax.swing.GroupLayout.DEFAULT_SIZE, 105, Short.MAX_VALUE))
-                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel19)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(55, 55, 55)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel19))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNroRegAni)
                             .addComponent(cmbIdioma, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFuente))
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -593,22 +610,17 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addComponent(txtFuente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel18)
-                        .addComponent(txtCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtNroRegAni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(txtCientifico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel13)
                         .addComponent(jLabel8))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblcontarParteUso2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblerrorParteUso2)
                 .addContainerGap())
@@ -628,7 +640,7 @@ public class Animales extends javax.swing.JInternalFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -671,9 +683,9 @@ public class Animales extends javax.swing.JInternalFrame {
 
         jLabel42.setText("Observaciones (Anexos, datos extras anotar si existen grabaciones o videos anexos adjuntos)");
 
-        AtxtObs.setColumns(20);
-        AtxtObs.setRows(5);
-        jScrollPane5.setViewportView(AtxtObs);
+        AtxtObs2.setColumns(20);
+        AtxtObs2.setRows(5);
+        jScrollPane5.setViewportView(AtxtObs2);
 
         lblActaAnimal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -791,7 +803,7 @@ public class Animales extends javax.swing.JInternalFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(lblActaAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel42)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -912,7 +924,7 @@ public class Animales extends javax.swing.JInternalFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("MORFOLOGIA", jPanel5);
@@ -1119,15 +1131,16 @@ public class Animales extends javax.swing.JInternalFrame {
 
         tablaAnimal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "codigo animal", "codigo region", "nombre nativo", "nombre cientifico", "TCO", "comunidad", "nombre rep. nativo", "ap rep nativo", "am rep nativo", "cargo rep nativo", "especie", "color", "coorx", "coory", "foto ", "dibujo", "acta", "tipo de uso ", "parte en uso", "manera uso", "descripcion ", "fecha", "fuente dato", "idioma", "uso combinado", "observaciones"
+                "codigo", "nombre nativo", "nombre cientifico", "tipo uso", "parte uso", "manera uso", "descripcion", "obervaciones"
             }
         ));
+        tablaAnimal.setComponentPopupMenu(jPopupMenu1);
         jScrollPane4.setViewportView(tablaAnimal);
 
         jScrollPane7.setViewportView(jScrollPane4);
@@ -1140,29 +1153,30 @@ public class Animales extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(257, 257, 257)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(226, 226, 226))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1)
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBorrarAni))
                         .addGap(25, 25, 25))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1183,12 +1197,12 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addComponent(btnBorrarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 481, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(91, 91, 91))
         );
 
         pack();
@@ -1217,7 +1231,7 @@ public class Animales extends javax.swing.JInternalFrame {
 
     private void btnRegAnimalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegAnimalesActionPerformed
 
-             try{
+            try{
             String sql="INSERT INTO \"animal\"(cod_animal,cod_region,cod_registrante,cod_dpto,cod_mncp,nombre_nativo,nombre_cientifico,nombre_tco,nombre_comunidad,nom_repnat,ap_repnat,am_repnat,cargo_repnat,especie,color,coorx,coory,foto_animal,dibujo,acta_ani,tipo_uso,parte_uso,manera_uso,descripcion_animal,fecha_registro,fuente_de_datos,idioma_region,uso_combinado,observaciones) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
            connPos cn=new connPos();
@@ -1251,7 +1265,7 @@ public class Animales extends javax.swing.JInternalFrame {
             pst.setString(26,txtFuente.getText());
             pst.setString(27,(String)cmbIdioma.getSelectedItem());
             pst.setString(28,(String)chkCombinado.getText());
-            pst.setString(29,AtxtObs.getText());
+            pst.setString(29,AtxtObs2.getText());
            // pst.setString(10,(String)cmbDesplaza.getSelectedItem());   chkCombinado
             
            
@@ -1287,7 +1301,7 @@ public class Animales extends javax.swing.JInternalFrame {
             txtFuente.setText("");
             cmbIdioma.setSelectedItem("");
             chkCombinado.setText("");
-            AtxtObs.setText("");
+            AtxtObs2.setText("");
             
         
                   
@@ -1319,81 +1333,113 @@ public class Animales extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
           
-
-        String cod_animal;
-        int cod_region;
-        String nombre_nativo;
-        String nombre_cientifico;
-        String especie;
-        String color;
-        String tipo_uso;
-        String parte_uso;
-        String manera_uso;
-        String desplazamiento;
-        String descripcion_animal;
-        String nro_de_registro_animal;
-        String fecha_registro;
-        String fuente_de_datos;
-        String idioma_region;
-              
-        int fila = this.tablaAnimal.getSelectedRow();
-
-        cod_animal=this.tablaAnimal.getValueAt(fila, 0).toString();
-        cod_region=Integer.parseInt(this.tablaAnimal.getValueAt(fila, 1).toString());
-        nombre_nativo=this.tablaAnimal.getValueAt(fila, 2).toString();
-        nombre_cientifico=this.tablaAnimal.getValueAt(fila, 3).toString();
-        especie=this.tablaAnimal.getValueAt(fila, 4).toString();
-        color=this.tablaAnimal.getValueAt(fila, 5).toString();
-        tipo_uso=this.tablaAnimal.getValueAt(fila, 6).toString();
-        parte_uso=this.tablaAnimal.getValueAt(fila, 7).toString();
-        manera_uso=this.tablaAnimal.getValueAt(fila, 8).toString();
-        desplazamiento=this.tablaAnimal.getValueAt(fila, 9).toString();
-        descripcion_animal=this.tablaAnimal.getValueAt(fila, 10).toString();
-        nro_de_registro_animal=this.tablaAnimal.getValueAt(fila, 11).toString();
-        fecha_registro=this.tablaAnimal.getValueAt(fila, 12).toString();
-        fuente_de_datos=this.tablaAnimal.getValueAt(fila, 13).toString();
-        idioma_region=this.tablaAnimal.getValueAt(fila, 14).toString();
-       
+         try {
+            Connection cn=getConexion();
+           // PreparedStatement pst=cn.prepareStatement("UPDATE ANIMAL SET nombre_nativo='"+txtNativo.getText()+"',nombre_cientifico='"+txtCientifico.getText()+"',tipo_uso='"+txtUso.getText()+"',parte_uso='"+txtParteUso.getText()+"',manera_uso='"+AtxtComoUso.getText()+"',descripcion_animal='"+AtxtObsA.getText()+"',observaciones='"+AtxtObs2.getText()+"' WHERE cod_animal='"+txtCodigo.getText()+"'");
+          
+            PreparedStatement pst=cn.prepareStatement("UPDATE ANIMAL SET nombre_nativo=?,nombre_cientifico=?,tipo_uso=?,parte_uso=?,manera_uso=?,descripcion_animal=?,observaciones=? WHERE cod_animal='"+txtCodigo.getText()+"'");
+           
+            pst.setString(1,txtNativo.getText());
+            pst.setString(2, txtCientifico.getText());
+            pst.setString(3, txtUso.getText());
+            pst.setString(4, txtParteUso.getText());
+            pst.setString(5, AtxtComoUso.getText());
+            pst.setString(6,AtxtObsA.getText());
+            pst.setString(7, AtxtObs2.getText());
+          
+            int N=pst.executeUpdate();
+         
+            if(N>0){
+            JOptionPane.showMessageDialog(null,"adicionado correctamente");
+            cargaTodoAnimales();
+                    }
+            else{
+               JOptionPane.showMessageDialog(null,"error no se adiciono");
+            }
+                
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
-        editaAnimal er= new editaAnimal(cod_animal,cod_region, nombre_nativo, nombre_cientifico,
-                               especie, color, tipo_uso, parte_uso, manera_uso,
-                               desplazamiento,descripcion_animal,nro_de_registro_animal,
-                              fecha_registro,fuente_de_datos,idioma_region);
-        er.setVisible(true);
-        this.dispose();
+
+//        String cod_animal;
+//        int cod_region;
+//        String nombre_nativo;
+//        String nombre_cientifico;
+//        String especie;
+//        String color;
+//        String tipo_uso;
+//        String parte_uso;
+//        String manera_uso;
+//        String desplazamiento;
+//        String descripcion_animal;
+//        String nro_de_registro_animal;
+//        String fecha_registro;
+//        String fuente_de_datos;
+//        String idioma_region;
+//              
+//        int fila = this.tablaAnimal.getSelectedRow();
+//
+//        cod_animal=this.tablaAnimal.getValueAt(fila, 0).toString();
+//        cod_region=Integer.parseInt(this.tablaAnimal.getValueAt(fila, 1).toString());
+//        nombre_nativo=this.tablaAnimal.getValueAt(fila, 2).toString();
+//        nombre_cientifico=this.tablaAnimal.getValueAt(fila, 3).toString();
+//        especie=this.tablaAnimal.getValueAt(fila, 4).toString();
+//        color=this.tablaAnimal.getValueAt(fila, 5).toString();
+//        tipo_uso=this.tablaAnimal.getValueAt(fila, 6).toString();
+//        parte_uso=this.tablaAnimal.getValueAt(fila, 7).toString();
+//        manera_uso=this.tablaAnimal.getValueAt(fila, 8).toString();
+//        desplazamiento=this.tablaAnimal.getValueAt(fila, 9).toString();
+//        descripcion_animal=this.tablaAnimal.getValueAt(fila, 10).toString();
+//        nro_de_registro_animal=this.tablaAnimal.getValueAt(fila, 11).toString();
+//        fecha_registro=this.tablaAnimal.getValueAt(fila, 12).toString();
+//        fuente_de_datos=this.tablaAnimal.getValueAt(fila, 13).toString();
+//        idioma_region=this.tablaAnimal.getValueAt(fila, 14).toString();
+//       
+//        
+//        
+//        editaAnimal er= new editaAnimal(cod_animal,cod_region, nombre_nativo, nombre_cientifico,
+//                               especie, color, tipo_uso, parte_uso, manera_uso,
+//                               desplazamiento,descripcion_animal,nro_de_registro_animal,
+//                              fecha_registro,fuente_de_datos,idioma_region);
+//        er.setVisible(true);
+//        this.dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnBorrarAniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAniActionPerformed
         
-        int fila;
-        fila=(Integer)this.tablaAnimal.getSelectedRow();
-        String codigo=this.tablaAnimal.getValueAt(fila, 0).toString();
-        connPos cn= new connPos();
-        cn.borrarAnimal(codigo);
         
-        DefaultTableModel dfmDelete = new DefaultTableModel();
-        this.tablaAnimal.setModel(dfmDelete);
-        dfmDelete.setColumnIdentifiers(new Object[]{"cod_animal","cod_region","nombre_nativo","nombre_cientifico","especie",
-                                                    "color","tipo_uso","parte_uso","manera_uso","desplazamiento",
-                                                    "descripcion_animal","nro_de_registro_animal",
-                                                    "fecha_registro","fuente_de_datos","idioma_region"});
-        ResultSet rs=cn.seleccionarTodoAnimales();
         
-        try{
-            while(rs.next()){
-            dfmDelete.addRow(new Object[]{rs.getString("cod_animal"),rs.getInt("cod_region"),rs.getString("nombre_nativo"),
-                                          rs.getString("nombre_cientifico"),rs.getString("especie"),
-                                          rs.getString("color"),rs.getString("tipo_uso"),rs.getString("parte_uso"),
-                                          rs.getString("manera_uso"),rs.getString("desplazamiento"),rs.getString("desplazamiento"), 
-                                          rs.getString("descripcion_animal"),rs.getString("nro_de_registro_animal"),
-                                          rs.getString("fecha_registro"),rs.getString("fuente_de_datos"),rs.getString("idioma_region")});    
-            }
-        }
-        catch(Exception e){
-        
-        }
+//        int fila;
+//        fila=(Integer)this.tablaAnimal.getSelectedRow();
+//        String codigo=this.tablaAnimal.getValueAt(fila, 0).toString();
+//        connPos cn= new connPos();
+//        cn.borrarAnimal(codigo);
+//        
+//        DefaultTableModel dfmDelete = new DefaultTableModel();
+//        this.tablaAnimal.setModel(dfmDelete);
+//        dfmDelete.setColumnIdentifiers(new Object[]{"cod_animal","cod_region","nombre_nativo","nombre_cientifico","especie",
+//                                                    "color","tipo_uso","parte_uso","manera_uso","desplazamiento",
+//                                                    "descripcion_animal","nro_de_registro_animal",
+//                                                    "fecha_registro","fuente_de_datos","idioma_region"});
+//        ResultSet rs=cn.seleccionarTodoAnimales();
+//        
+//        try{
+//            while(rs.next()){
+//            dfmDelete.addRow(new Object[]{rs.getString("cod_animal"),rs.getInt("cod_region"),rs.getString("nombre_nativo"),
+//                                          rs.getString("nombre_cientifico"),rs.getString("especie"),
+//                                          rs.getString("color"),rs.getString("tipo_uso"),rs.getString("parte_uso"),
+//                                          rs.getString("manera_uso"),rs.getString("desplazamiento"),rs.getString("desplazamiento"), 
+//                                          rs.getString("descripcion_animal"),rs.getString("nro_de_registro_animal"),
+//                                          rs.getString("fecha_registro"),rs.getString("fuente_de_datos"),rs.getString("idioma_region")});    
+//            }
+//        }
+//        catch(Exception e){
+//        
+//        }
         
     }//GEN-LAST:event_btnBorrarAniActionPerformed
 
@@ -1402,7 +1448,7 @@ public class Animales extends javax.swing.JInternalFrame {
         int cuenta=AtxtObsA.getText().length();
         String k=AtxtObsA.getText();
         lblcontarParteUso2.setText(String.valueOf(cuenta));
-        if(cuenta > 999){
+        if(cuenta > 1999){
          String nueva= k.substring(0, k.length()-1 );
          AtxtObsA.setText(nueva);
          lblerrorParteUso2.setVisible(true);      
@@ -1581,11 +1627,105 @@ public class Animales extends javax.swing.JInternalFrame {
         }  
     }//GEN-LAST:event_cmbRegisCIActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        int fila = tablaAnimal.getSelectedRow();
+  
+    if(fila>=0)
+    {
+     
+       //  nombre_nativo,nombre_cientifico,tipo_uso,parte_uso,manera_uso,descripcion_animal
+        txtCodigo.setText(tablaAnimal.getValueAt(fila, 0).toString());
+        txtNativo.setText(tablaAnimal.getValueAt(fila, 1).toString());
+        txtCientifico.setText(tablaAnimal.getValueAt(fila, 2).toString());
+        txtUso.setText(tablaAnimal.getValueAt(fila, 3).toString());
+        txtParteUso.setText(tablaAnimal.getValueAt(fila, 4).toString());
+        AtxtComoUso.setText(tablaAnimal.getValueAt(fila, 5).toString());
+        AtxtObsA.setText(tablaAnimal.getValueAt(fila, 6).toString());
+        AtxtObs2.setText(tablaAnimal.getValueAt(fila, 7).toString());
+       
+        
+        cmbDepto.setEnabled(false);
+        cmbMunicipio.setEnabled(false);
+        txtComunidad.setEnabled(false);
+        txtTco.setEnabled(false);
+        txtCoordXGrados.setEnabled(false);
+        txtCoordYGrados.setEnabled(false);
+        cmbTipoRegion.setEnabled(false);
+        jComboregani.setEnabled(false);
+        txtCodigo.setEnabled(false);
+        cmbIdioma.setEnabled(false);
+        txtFuente.setEnabled(false);
+        cmbRegisCI.setEnabled(false);
+        txtInfPaterno.setEnabled(false);
+        txtInfMaterno.setEnabled(false);
+        txtInfNombre.setEnabled(false);
+        txtCargo.setEnabled(false);
+        btnActa.setEnabled(false);
+        txtEspecie.setEnabled(false);
+        txtColorA.setEnabled(false);
+        jButton2.setEnabled(false);
+        jButton3.setEnabled(false);
+        chkCombinado.setEnabled(false);
+                
+        
+        
+//        String des=tbpro.getValueAt(fila, 1).toString();
+//        String pre=tbpro.getValueAt(fila, 2).toString();
+//        String img=tbpro.getValueAt(fila, 3).toString();
+//        txtcod.setText(cod);
+//        txtdes.setText(des);
+//        txtpre.setText(pre);      
+//        txtnomimagen.setText(img);
+//        Image foto = getToolkit().getImage(img);
+//        foto= foto.getScaledInstance(110, 110, 1);
+//        lblfoto.setIcon(new ImageIcon(foto));
+     
+    }
+    else
+    {
+       JOptionPane.showMessageDialog(null, "Elija una fila...llene la Tabla");
+    }
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+      int fila=tablaAnimal.getSelectedRow();
+    if(fila>-1)
+    {
+        String cod=tablaAnimal.getValueAt(fila, 0).toString();
+        String sqlElim="DELETE FROM animal WHERE cod_animal='"+cod+"'";
+            try {
+                Connection cn=getConexion();
+                PreparedStatement pst = cn.prepareStatement(sqlElim);
+                int n=pst.executeUpdate();
+                if(n>0)
+                {
+                     JOptionPane.showMessageDialog(null, "Los datos fueron eliminados con exito");
+                     cargaTodoAnimales();
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Hubo Problemas al querer eliminar datos");
+                }
+            } catch (SQLException ex) {
+               
+            }
+        
+    }
+    else
+    {
+    
+    }
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AcodDep;
     private javax.swing.JTextField AmunCod;
     private javax.swing.JTextArea AtxtComoUso;
-    private javax.swing.JTextArea AtxtObs;
+    private javax.swing.JTextArea AtxtObs2;
     private javax.swing.JTextArea AtxtObsA;
     private javax.swing.JButton btnActa;
     private javax.swing.JButton btnBorrarAni;
@@ -1635,13 +1775,14 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1650,6 +1791,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1682,7 +1824,6 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtInfNombre;
     private javax.swing.JTextField txtInfPaterno;
     private javax.swing.JTextField txtNativo;
-    private javax.swing.JTextField txtNroRegAni;
     private javax.swing.JTextArea txtParteUso;
     private javax.swing.JTextField txtRegMaterno;
     private javax.swing.JTextField txtRegNombre;

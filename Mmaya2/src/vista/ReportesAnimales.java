@@ -42,7 +42,7 @@ private final String logotipo="/Reportes/encabezado.png";
     public void cargaParaReportes(){
        DefaultTableModel modelo=(DefaultTableModel)tablaAnimalRep.getModel();
        modelo.setRowCount(0);
-      res = conexion.connPos.Consulta("SELECT cod_animal,nombre_nativo,nombre_cientifico,especie,color,nro_de_registro_animal,fecha_registro,fuente_de_datos,idioma_region FROM ANIMAL");
+      res = conexion.connPos.Consulta("SELECT cod_animal,nombre_nativo,nombre_cientifico,especie,color,fecha_registro,fuente_de_datos,idioma_region FROM ANIMAL");
        try{
          while(res.next()){
              Vector v = new Vector();
@@ -54,7 +54,6 @@ private final String logotipo="/Reportes/encabezado.png";
              v.add(res.getString(6));
              v.add(res.getString(7));
              v.add(res.getString(8));
-             v.add(res.getString(9));
              modelo.addRow(v);
              tablaAnimalRep.setModel(modelo);
              }
