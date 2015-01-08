@@ -5,6 +5,8 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import javax.swing.table.DefaultTableModel;
  
 public class connPos
 {
@@ -19,12 +21,14 @@ public class connPos
     Connection con=null;
     
     FileInputStream fis;
-      
+    DefaultTableModel model ;
+    
     static Connection conexion;
     static Statement sentencia;
     static ResultSet resultado;
     static String query="";
-    static Connection contacto=null;        
+    static Connection contacto=null;  
+   
     public connPos()
     {        
     }
@@ -313,8 +317,36 @@ public class connPos
             Logger.getLogger(connPos.class.getName()).log(Level.SEVERE, null, ex);
         }
    }
- 
- 
+     
+   public ResultSet SeleccionarPlanta(String nomnatpl){
+    PreparedStatement pst;
+    ResultSet rs=null;
+      try{
+          Connection cn=getConexion();
+         pst=cn.prepareStatement("SELECT * FROM planta WHERE nombre_nativo=?");
+         pst.setString(1, nomnatpl);
+         rs=pst.executeQuery();
+       }catch(Exception e){
+    
+       }
+      return rs;
+   }  
+   
+    public ResultSet SeleccionarAnimal(String nomnatani){
+    PreparedStatement pst;
+    ResultSet rs=null;
+      try{
+          Connection cn=getConexion();
+         pst=cn.prepareStatement("SELECT * FROM animal WHERE nombre_nativo=?");
+         pst.setString(1, nomnatani);
+         rs=pst.executeQuery();
+       }catch(Exception e){
+    
+       }
+      return rs;
+   }
+    
+
  /*public void cerrarConexion(){
         try {
             cn.close();

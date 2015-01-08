@@ -25,8 +25,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.RowFilter;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 
@@ -35,6 +37,9 @@ public class Animales extends javax.swing.JInternalFrame {
     static ResultSet res; 
     public FileInputStream fisfoto;
     FileInputStream fisI;
+     DefaultTableModel model ;
+     Statement  st=null;
+     //DefaultListModel modelo=new DefaultListModel();
     
      public FileInputStream fisA;
         public   FileInputStream fisB;
@@ -49,7 +54,9 @@ public class Animales extends javax.swing.JInternalFrame {
     
     public Animales() {
         initComponents();
-        cargaTodoAnimales();
+        cargarAni("");
+        //cargaTodoAnimales();
+        
           
         //CAPTURANDO FECHAS ACTUALES
         Date d=new Date();
@@ -318,6 +325,10 @@ public class Animales extends javax.swing.JInternalFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         tablaAnimal = new javax.swing.JTable();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        txtNomNatAni = new javax.swing.JTextField();
+        btnBuscarAni = new javax.swing.JButton();
 
         jMenuItem1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jMenuItem1.setText("MODIFICAR");
@@ -1145,6 +1156,30 @@ public class Animales extends javax.swing.JInternalFrame {
 
         jScrollPane7.setViewportView(jScrollPane4);
 
+        jLabel29.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        jLabel29.setText("BUSQUEDAS  POR :");
+
+        jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel30.setText("Nombre Nativo");
+
+        txtNomNatAni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNomNatAniActionPerformed(evt);
+            }
+        });
+        txtNomNatAni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtNomNatAniKeyReleased(evt);
+            }
+        });
+
+        btnBuscarAni.setText("BUSCAR");
+        btnBuscarAni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarAniActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -1170,12 +1205,24 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(226, 226, 226))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTabbedPane1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBorrarAni))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(59, 59, 59)
+                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtNomNatAni, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnBuscarAni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnBorrarAni))))
                         .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
@@ -1189,12 +1236,20 @@ public class Animales extends javax.swing.JInternalFrame {
                     .addComponent(txtFecha))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(31, 31, 31)
                         .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnBorrarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnBorrarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel29)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel30)
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtNomNatAni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnBuscarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1721,6 +1776,65 @@ public class Animales extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+    private void btnBuscarAniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarAniActionPerformed
+          
+        String nomnatani = this.txtNomNatAni.getText().toString();
+        connPos cn=new connPos();
+        ResultSet rs=cn.SeleccionarAnimal(nomnatani);
+        DefaultTableModel dfmBuscar=new DefaultTableModel();
+        this.tablaAnimal.setModel(dfmBuscar);
+        dfmBuscar.setColumnIdentifiers(new Object[]{"COD_ANIMAL","NOMBRE_NATIVO","NOMBRE_CIENTIFICO","TIPO_USO","PARTE_USO","MANERA_USO","DESCRIPCION_ANIMAL","OBSERVACIONES"});
+        try{
+                 while(rs.next()){
+                  dfmBuscar.addRow(new Object[]{rs.getString("cod_animal"),rs.getString("nombre_nativo"),rs.getString("nombre_cientifico"),rs.getString("tipo_uso"),rs.getString("parte_uso"),rs.getString("manera_uso"),rs.getString("descripcion_animal"),rs.getString("observaciones")});
+                 }
+        }catch(Exception e){ 
+   
+        }
+    }//GEN-LAST:event_btnBuscarAniActionPerformed
+
+     public void cargarAni(String valor){  //String valor
+     String [] titulos={"cod_animal","nombre_nativo","nombre_cientifico","tipo_uso","parte_uso","manera_uso","descripcion_animal","observaciones"};
+     String [] registros= new String[8];
+     
+     res = conexion.connPos.Consulta( "SELECT * FROM animal WHERE nombre_nativo ILIKE '%"+valor+"%'"); // WHERE nombre_nativo LIKE '%"+valor+"%'
+     model = new DefaultTableModel(null,titulos);
+     
+     connPos cn=new connPos();
+        try{
+     
+          //PreparedStatement pst=connPos.getConexion().prepareStatement(sql);
+          //res = conexion.connPos.Consulta(  
+          //ResultSet rs=st.executeQuery(sql);
+          
+          while (res.next()){
+              registros[0]=res.getString("cod_animal");
+              registros[1]=res.getString("nombre_nativo");
+              registros[2]=res.getString("nombre_cientifico");
+              registros[3]=res.getString("tipo_uso");
+              registros[4]=res.getString("parte_uso");
+              registros[5]=res.getString("manera_uso");
+              registros[6]=res.getString("descripcion_animal");
+              registros[7]=res.getString("observaciones");
+              model.addRow(registros);
+          }
+          tablaAnimal.setModel(model);
+          
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,e);
+        }
+     
+    }
+    private void txtNomNatAniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNomNatAniKeyReleased
+
+     cargarAni(txtNomNatAni.getText());  
+         
+    }//GEN-LAST:event_txtNomNatAniKeyReleased
+
+    private void txtNomNatAniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomNatAniActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNomNatAniActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AcodDep;
     private javax.swing.JTextField AmunCod;
@@ -1729,6 +1843,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea AtxtObsA;
     private javax.swing.JButton btnActa;
     private javax.swing.JButton btnBorrarAni;
+    private javax.swing.JButton btnBuscarAni;
     private javax.swing.JButton btnRegAnimales;
     private javax.swing.JCheckBox chkCombinado;
     private javax.swing.JComboBox cmbDepto;
@@ -1761,7 +1876,9 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -1824,6 +1941,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtInfNombre;
     private javax.swing.JTextField txtInfPaterno;
     private javax.swing.JTextField txtNativo;
+    private javax.swing.JTextField txtNomNatAni;
     private javax.swing.JTextArea txtParteUso;
     private javax.swing.JTextField txtRegMaterno;
     private javax.swing.JTextField txtRegNombre;
