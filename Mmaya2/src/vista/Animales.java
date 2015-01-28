@@ -329,6 +329,7 @@ public class Animales extends javax.swing.JInternalFrame {
         jLabel30 = new javax.swing.JLabel();
         txtNomNatAni = new javax.swing.JTextField();
         btnBuscarAni = new javax.swing.JButton();
+        jLabel31 = new javax.swing.JLabel();
 
         jMenuItem1.setFont(new java.awt.Font("Microsoft Sans Serif", 1, 14)); // NOI18N
         jMenuItem1.setText("MODIFICAR");
@@ -1157,10 +1158,10 @@ public class Animales extends javax.swing.JInternalFrame {
         jScrollPane7.setViewportView(jScrollPane4);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel29.setText("BUSQUEDAS  POR :");
+        jLabel29.setText("BUSQUEDAS :");
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel30.setText("Nombre Nativo");
+        jLabel30.setText("Anote el Nombre Nativo o");
 
         txtNomNatAni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1179,6 +1180,9 @@ public class Animales extends javax.swing.JInternalFrame {
                 btnBuscarAniActionPerformed(evt);
             }
         });
+
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel31.setText("Nombre Cientifico");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1208,22 +1212,28 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addComponent(jTabbedPane1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(59, 59, 59)
-                                .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnBorrarAni)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
                                         .addComponent(txtNomNatAni, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnBuscarAni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRegAnimales, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBorrarAni))))
-                        .addGap(25, 25, 25))))
+                                        .addComponent(btnBuscarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(21, 21, 21))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1245,8 +1255,10 @@ public class Animales extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel29)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel30)
-                        .addGap(16, 16, 16)
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel31)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNomNatAni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnBuscarAni, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1797,7 +1809,7 @@ public class Animales extends javax.swing.JInternalFrame {
      String [] titulos={"cod_animal","nombre_nativo","nombre_cientifico","tipo_uso","parte_uso","manera_uso","descripcion_animal","observaciones"};
      String [] registros= new String[8];
      
-     res = conexion.connPos.Consulta( "SELECT * FROM animal WHERE nombre_nativo ILIKE '%"+valor+"%'"); // WHERE nombre_nativo LIKE '%"+valor+"%'
+     res = conexion.connPos.Consulta( "SELECT * FROM animal WHERE CONCAT(nombre_nativo,' ',nombre_cientifico) ILIKE '%"+valor+"%'"); // WHERE nombre_nativo LIKE '%"+valor+"%'
      model = new DefaultTableModel(null,titulos);
      
      connPos cn=new connPos();
@@ -1879,6 +1891,7 @@ public class Animales extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
